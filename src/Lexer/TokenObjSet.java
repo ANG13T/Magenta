@@ -8,8 +8,8 @@ public enum TokenObjSet {
   // Token types cannot have underscores
   
   //basic data types
-  NUMBER("(?<=\\s|^)\\d+(?=\\s|$)", false),
   DECIMAL("\\d+(\\.\\d{1,2})?", false),
+  NUMBER("(?<=\\s|^)\\d+(?=\\s|$)", false),
   STRING("\"[^\"]*\"", false),
   BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", false),
   WHITESPACE("[ \t\f\r\n]+", false),
@@ -27,14 +27,13 @@ public enum TokenObjSet {
   OPGREATERTHANEQUALTO(">=", false),
   OPLESSTHANEQUALTO("<=", false),
   OPAND("&&", false),
-  OPOR("||", false),
+  OPOR("\\|\\|", false),
   OPNOT("!", false),
   
   //punctuators
   PUNCQUESTION("[?]", false),
   PUNCCOLON("[:]", false),
   PUNCSEMICOLON("[;]", false),
-  PUNCPERIOD("[.]", false),
   PUNCCOMMA("[,]", false),
   PUNCLEFTPAREN("[(]", false),
   PUNCRIGHTPAREN("[)]", false),

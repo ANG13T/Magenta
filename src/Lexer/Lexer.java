@@ -26,8 +26,6 @@ public class Lexer {
           tokensString += sc.nextLine(); 
         }
        
-        System.out.println(tokensString);
-
         printTokens(lexenize(tokensString));
     }catch(Exception error) {
       System.out.println(error);
@@ -49,15 +47,7 @@ public class Lexer {
        Matcher m = p.matcher(token);
        
        if(m.find()) {
-         String val;
-         
-         if(set[j].getIncludeValue()) {
-           val = m.group();
-           System.out.println(token);
-           System.out.println(val);
-         }else {
-           val = null;
-         }
+         String val = m.group();
          
          TokenObj newToken = new TokenObj(set[j], val);
          tokens.add(newToken);
