@@ -1,6 +1,9 @@
 package Lexer;
 
 import java.io.File;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +25,8 @@ public class Lexer {
         while (sc.hasNextLine()) {
           tokensString += sc.nextLine(); 
         }
+       
+        System.out.println(tokensString);
 
         printTokens(lexenize(tokensString));
     }catch(Exception error) {
@@ -32,44 +37,35 @@ public class Lexer {
   
   private static List<TokenObj> lexenize(String input) {
  // The tokens to return
+    String token = "";
+    TokenObjSet[] set = TokenObjSet.values();
     ArrayList<TokenObj> tokens = new ArrayList<TokenObj>();
 
-    // Lexer logic begins here
-    StringBuffer tokenPatternsBuffer = new StringBuffer();
-    for (TokenObjSet tokenType : TokenObjSet.values())
-      tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
-    Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)));
-
-    // Begin matching tokens
-    Matcher matcher = tokenPatterns.matcher(input);
-    while (matcher.find()) {
-      if (matcher.group(TokenObjSet.NUMBER.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.NUMBER, matcher.group(TokenObjSet.NUMBER.name())));
-        continue;
-      }else if(matcher.group(TokenObjSet.BOOLEAN.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.BOOLEAN, matcher.group(TokenObjSet.BOOLEAN.name())));
-        continue;
-      } else if(matcher.group(TokenObjSet.DECIMAL.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.DECIMAL, matcher.group(TokenObjSet.DECIMAL.name())));
-        continue;
-      }else if (matcher.group(TokenObjSet.OPADD.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.OPADD, matcher.group(TokenObjSet.OPADD.name())));
-        continue;
-      }else if (matcher.group(TokenObjSet.OPSUBTRACT.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.OPSUBTRACT, matcher.group(TokenObjSet.OPSUBTRACT.name())));
-        continue;
-      }else if (matcher.group(TokenObjSet.OPMULTIPLY.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.OPMULTIPLY, matcher.group(TokenObjSet.OPMULTIPLY.name())));
-        continue;
-      }else if (matcher.group(TokenObjSet.OPDIVIDE.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.OPDIVIDE, matcher.group(TokenObjSet.OPDIVIDE.name())));
-        continue;
-      }else if (matcher.group(TokenObjSet.STRING.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.STRING, matcher.group(TokenObjSet.STRING.name())));
-        continue;
-      } else if (matcher.group(TokenObjSet.WHITESPACE.name()) != null)
-        continue;
-    }
+   for(int i = 0; i < input.length(); i++) {
+     token += input.charAt(i);
+     
+     for(int j = 0; j < set.length; j++) {
+       Pattern p  = set[j].getPattern();
+       Matcher m = p.matcher(token);
+       
+       if(m.find()) {
+         String val;
+         
+         if(set[j].getIncludeValue()) {
+           val = m.group();
+           System.out.println(token);
+           System.out.println(val);
+         }else {
+           val = null;
+         }
+         
+         TokenObj newToken = new TokenObj(set[j], val);
+         tokens.add(newToken);
+         token = token.substring(m.end());
+       }
+     }
+     
+   }
 
     return tokens;
   }
@@ -81,14 +77,6 @@ public class Lexer {
   }
     
 }
-
-//}else if (matcher.group(TokenObjSet.OP_MULTIPLY.name()) != null) {
-//  tokens.add(new TokenObj(TokenObjSet.OP_MULTIPLY, matcher.group(TokenObjSet.OP_MULTIPLY.name())));
-//  continue;
-//}else if (matcher.group(TokenObjSet.OP_DIVIDE.name()) != null) {
-//  tokens.add(new TokenObj(TokenObjSet.OP_DIVIDE, matcher.group(TokenObjSet.OP_DIVIDE.name())));
-//  continue;
-//}
 
 
 

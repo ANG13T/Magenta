@@ -8,60 +8,75 @@ public enum TokenObjSet {
   // Token types cannot have underscores
   
   //basic data types
-  NUMBER("(?<=\\s|^)\\d+(?=\\s|$)"),
-  DECIMAL("\\d+(\\.\\d{1,2})?"),
-  STRING("\"[^\"]*\""),
-  BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])"),
-  WHITESPACE("[ \t\f\r\n]+"),
+  NUMBER("(?<=\\s|^)\\d+(?=\\s|$)", false),
+  DECIMAL("\\d+(\\.\\d{1,2})?", false),
+  STRING("\"[^\"]*\"", false),
+  BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", false),
+  WHITESPACE("[ \t\f\r\n]+", false),
   
   //operators
-  OPADD("[+]"),
-  OPSUBTRACT("[-]"),
-  OPMULTIPLY("[*]"),
-  OPDIVIDE("[/]"),
-  OPMODULO("[%]"),
-  OPEQUALTO("=="),
-  OPNOTEQUALTO("!="),
-  OPGREATERTHAN(">"),
-  OPLESSTHAN("<"),
-  OPGREATERTHANEQUALTO(">="),
-  OPLESSTHANEQUALTO("<="),
-  OPAND("&&"),
-  OPOR("||"),
-  OPNOT("!"),
+  OPADD("[+]", false),
+  OPSUBTRACT("[-]", false),
+  OPMULTIPLY("[*]", false),
+  OPDIVIDE("[/]", false),
+  OPMODULO("[%]", false),
+  OPEQUALTO("==", false),
+  OPNOTEQUALTO("!=", false),
+  OPGREATERTHAN(">", false),
+  OPLESSTHAN("<", false),
+  OPGREATERTHANEQUALTO(">=", false),
+  OPLESSTHANEQUALTO("<=", false),
+  OPAND("&&", false),
+  OPOR("||", false),
+  OPNOT("!", false),
   
   //punctuators
-  PUNCQUESTION("[?]"),
-  PUNCCOLON("[:]"),
-  PUNCSEMICOLON("[;]"),
-  PUNCPERIOD("[.]"),
-  PUNCCOMMA("[,]"),
-  PUNCLEFTPAREN("[(]"),
-  PUNCRIGHTPAREN("[)]"),
-  PUNCLEFTCURLY("[{]"),
-  PUNCRIGHTCURLY("[}]"),
-  PUNCLEFTSQUARE("["),
-  PUNCRIGHTSQUARE("]"),
+  PUNCQUESTION("[?]", false),
+  PUNCCOLON("[:]", false),
+  PUNCSEMICOLON("[;]", false),
+  PUNCPERIOD("[.]", false),
+  PUNCCOMMA("[,]", false),
+  PUNCLEFTPAREN("[(]", false),
+  PUNCRIGHTPAREN("[)]", false),
+  PUNCLEFTCURLY("[{]", false),
+  PUNCRIGHTCURLY("[}]", false),
+
   
   //keywords
-  KEYIF("if(?=[^_A-Za-z])"),
-  KEYFOR("for(?=[^_A-Za-z])"),
-  KEYWHILE("while(?=[^_A-Za-z])"),
-  KEYBLOCK("block(?=[^_A-Za-z])"),
-  KEYEMIT("emit(?=[^_A-Za-z])"),
-  KEYTASK("task(?=[^_A-Za-z])"),
-  KEYNULL("null(?=[^_A-Za-z])"),
+  KEYIF("if(?=[^_A-Za-z])", false),
+  KEYFOR("for(?=[^_A-Za-z])", false),
+  KEYWHILE("while(?=[^_A-Za-z])", false),
+  KEYBLOCK("block(?=[^_A-Za-z])", false),
+  KEYEMIT("emit(?=[^_A-Za-z])", false),
+  KEYTASK("task(?=[^_A-Za-z])", false),
+  KEYNULL("null(?=[^_A-Za-z])", false),
+  KEYPASS("pass(?=[^_A-Za-z])", false),
   
   //identifiers
-  IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])"),
-  IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])"),
-  IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])");
+  IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])", false),
+  IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])", false),
+  IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])", false),
+  
+  COMMENT("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", false);
  
   
 
-  public final String pattern;
+  public String regex;
+  private boolean includeValue;
 
-  private TokenObjSet(String pattern) {
-    this.pattern = pattern;
+  private TokenObjSet(String regex, boolean includeVal) {
+    this.regex = regex;
+    this.includeValue = includeVal;
+  }
+  
+  Pattern getPattern() {
+    return Pattern.compile(regex);
+  }
+  
+  boolean getIncludeValue() {
+    return includeValue;
   }
 }
+
+//PUNCLEFTSQUARE("[", false),
+//PUNCRIGHTSQUARE("]", false),
