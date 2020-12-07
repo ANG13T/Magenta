@@ -1,11 +1,6 @@
 package Lexer;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +22,7 @@ public class Lexer {
         while (sc.hasNextLine()) {
           tokensString += sc.nextLine(); 
         }
+
         printTokens(lexenize(tokensString));
     }catch(Exception error) {
       System.out.println(error);
@@ -35,30 +31,28 @@ public class Lexer {
   }
   
   private static List<TokenObj> lexenize(String input) {
-    List<TokenObj> tokens = new ArrayList<TokenObj>();
-     
-   
-   // Lexer logic begins here
-      StringBuffer tokenPatternsBuffer = new StringBuffer();
-      for (TokenObjSet tokenType : TokenObjSet.values()) {
-        tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
-      Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)));
+ // The tokens to return
+    ArrayList<TokenObj> tokens = new ArrayList<TokenObj>();
 
-      // Begin matching tokens
-      Matcher matcher = tokenPatterns.matcher(input);
-      while (matcher.find()) {
-        if (matcher.group(TokenObjSet.NUMBER.name()) != null) {
-          tokens.add(new TokenObj(TokenObjSet.NUMBER, matcher.group(TokenObjSet.NUMBER.name())));
-          continue;
-        } else if (matcher.group(TokenObjSet.BINARYOP.name()) != null) {
-          tokens.add(new TokenObj(TokenObjSet.BINARYOP, matcher.group(TokenObjSet.BINARYOP.name())));
-          continue;
-        } else if (matcher.group(TokenObjSet.WHITESPACE.name()) != null)
-          continue;
-      }
+    // Lexer logic begins here
+    StringBuffer tokenPatternsBuffer = new StringBuffer();
+    for (TokenObjSet tokenType : TokenObjSet.values())
+      tokenPatternsBuffer.append(String.format("|(?<%s>%s)", tokenType.name(), tokenType.pattern));
+    Pattern tokenPatterns = Pattern.compile(new String(tokenPatternsBuffer.substring(1)));
+
+    // Begin matching tokens
+    Matcher matcher = tokenPatterns.matcher(input);
+    while (matcher.find()) {
+      if (matcher.group(TokenObjSet.NUMBER.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.NUMBER, matcher.group(TokenObjSet.NUMBER.name())));
+        continue;
+      } else if (matcher.group(TokenObjSet.BINARYOP.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.BINARYOP, matcher.group(TokenObjSet.BINARYOP.name())));
+        continue;
+      } else if (matcher.group(TokenObjSet.WHITESPACE.name()) != null)
+        continue;
     }
-    
-    
+
     return tokens;
   }
   
