@@ -7,7 +7,17 @@ import java.util.regex.Pattern;
 public enum TokenObjSet {
   // Token types cannot have underscores
   
-  NUMBER("-?[0-9]+"), BINARYOP("[*|/|+|-]"), WHITESPACE("[ \t\f\r\n]+");
+  NUMBER("(?<=\\s|^)\\d+(?=\\s|$)"),
+  DECIMAL("\\d+(\\.\\d{1,2})?"),
+  STRING("\"[^\"]*\""),
+  BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])"),
+  OPADD("[+]"),
+  OPSUBTRACT("[-]"),
+  OPMULTIPLY("[*]"),
+  OPDIVIDE("[/]"),
+  
+  
+  WHITESPACE("[ \t\f\r\n]+");
   
 
   public final String pattern;
@@ -25,3 +35,8 @@ public enum TokenObjSet {
 //STRING("(?<=^\\s*)'([^'\\\\]|\\\\.)*'"),
 //DECIMAL("\\d+\\.?\\d*"),
 //BOOLEAN("(?<=^\\s*)true(?=[^_A-Za-z])|false(?=[^_A-Za-z])"),
+
+//OP_PLUS("[+]"),
+//OP_MINUS("[-]"),
+//OP_MULTIPLY("[*]"),
+//OP_DIVIDE("[/]"),

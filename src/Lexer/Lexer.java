@@ -46,8 +46,26 @@ public class Lexer {
       if (matcher.group(TokenObjSet.NUMBER.name()) != null) {
         tokens.add(new TokenObj(TokenObjSet.NUMBER, matcher.group(TokenObjSet.NUMBER.name())));
         continue;
-      } else if (matcher.group(TokenObjSet.BINARYOP.name()) != null) {
-        tokens.add(new TokenObj(TokenObjSet.BINARYOP, matcher.group(TokenObjSet.BINARYOP.name())));
+      }else if(matcher.group(TokenObjSet.BOOLEAN.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.BOOLEAN, matcher.group(TokenObjSet.BOOLEAN.name())));
+        continue;
+      } else if(matcher.group(TokenObjSet.DECIMAL.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.DECIMAL, matcher.group(TokenObjSet.DECIMAL.name())));
+        continue;
+      }else if (matcher.group(TokenObjSet.OPADD.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.OPADD, matcher.group(TokenObjSet.OPADD.name())));
+        continue;
+      }else if (matcher.group(TokenObjSet.OPSUBTRACT.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.OPSUBTRACT, matcher.group(TokenObjSet.OPSUBTRACT.name())));
+        continue;
+      }else if (matcher.group(TokenObjSet.OPMULTIPLY.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.OPMULTIPLY, matcher.group(TokenObjSet.OPMULTIPLY.name())));
+        continue;
+      }else if (matcher.group(TokenObjSet.OPDIVIDE.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.OPDIVIDE, matcher.group(TokenObjSet.OPDIVIDE.name())));
+        continue;
+      }else if (matcher.group(TokenObjSet.STRING.name()) != null) {
+        tokens.add(new TokenObj(TokenObjSet.STRING, matcher.group(TokenObjSet.STRING.name())));
         continue;
       } else if (matcher.group(TokenObjSet.WHITESPACE.name()) != null)
         continue;
@@ -63,6 +81,14 @@ public class Lexer {
   }
     
 }
+
+//}else if (matcher.group(TokenObjSet.OP_MULTIPLY.name()) != null) {
+//  tokens.add(new TokenObj(TokenObjSet.OP_MULTIPLY, matcher.group(TokenObjSet.OP_MULTIPLY.name())));
+//  continue;
+//}else if (matcher.group(TokenObjSet.OP_DIVIDE.name()) != null) {
+//  tokens.add(new TokenObj(TokenObjSet.OP_DIVIDE, matcher.group(TokenObjSet.OP_DIVIDE.name())));
+//  continue;
+//}
 
 
 
