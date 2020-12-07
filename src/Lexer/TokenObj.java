@@ -1,16 +1,16 @@
 package Lexer;
 
 public class TokenObj {
-  
-  public String identifier;
-  public String text;
-  
-  public TokenObj(String identifier, String text) {
-    this.identifier = identifier;
-    this.text = text;
+  public TokenObjSet type;
+  public String data;
+
+  public TokenObj(TokenObjSet type, String data) {
+    this.type = type;
+    this.data = data;
   }
-  
-  public String getText() {
-    return "[ " + identifier + " : " + text + " ]";
+
+  @Override
+  public String toString() {
+    return String.format("(%s %s)", type.name(), data);
   }
 }
