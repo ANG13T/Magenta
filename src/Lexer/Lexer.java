@@ -8,18 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lexer {
-  private final static String[] keywordsList = {"task", "block", "if", "true", "false", "null"};
-  static List<String> keywords = Arrays.asList(keywordsList);
-  
-
   public static void main(String[] args) {
     
     try {
-        File file = new File("src/tests/parserTest1.txt"); 
+        File file = new File("src/tests/lexerText2.txt"); 
         Scanner sc = new Scanner(file); 
         String tokensString = "";
         while (sc.hasNextLine()) {
@@ -34,31 +31,31 @@ public class Lexer {
   }
   
   private static List<TokenObj> lexenize(String input) {
- // The tokens to return
-    String token = "";
-    TokenObjSet[] set = TokenObjSet.values();
-    ArrayList<TokenObj> tokens = new ArrayList<TokenObj>();
+    // The tokens to return
+       String token = "";
+       TokenObjSet[] set = TokenObjSet.values();
+       ArrayList<TokenObj> tokens = new ArrayList<TokenObj>();
 
-   for(int i = 0; i < input.length(); i++) {
-     token += input.charAt(i);
-     
-     for(int j = 0; j < set.length; j++) {
-       Pattern p  = set[j].getPattern();
-       Matcher m = p.matcher(token);
-       
-       if(m.find()) {
-         String val = m.group();
-         
-         TokenObj newToken = new TokenObj(set[j], val);
-         tokens.add(newToken);
-         token = token.substring(m.end());
-       }
+      for(int i = 0; i < input.length(); i++) {
+        token += input.charAt(i);
+        
+        for(int j = 0; j < set.length; j++) {
+          Pattern p  = set[j].getPattern();
+          Matcher m = p.matcher(token);
+          
+          if(m.find()) {
+            String val = m.group();
+            
+            TokenObj newToken = new TokenObj(set[j], val);
+            tokens.add(newToken);
+            token = token.substring(m.end());
+          }
+        }
+        
+      }
+
+       return tokens;
      }
-     
-   }
-
-    return tokens;
-  }
   
   private static void printTokens(List<TokenObj> tokens) {
     for(TokenObj token: tokens) {
