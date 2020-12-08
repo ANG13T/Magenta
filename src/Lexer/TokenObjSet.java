@@ -12,7 +12,11 @@ public enum TokenObjSet {
   NUMBER("(?<=\\s|^)\\d+(?=\\s|$)", false),
   STRING("\"[^\"]*\"", false),
   BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", false),
-  WHITESPACE("[ \t\f\r\n]+", false),
+  
+  //identifiers
+  IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])", false),
+  IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])", false),
+  IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])", false),
   
   //operators
   OPADD("[+]", false),
@@ -50,12 +54,8 @@ public enum TokenObjSet {
   KEYTASK("task(?=[^_A-Za-z])", false),
   KEYNULL("null(?=[^_A-Za-z])", false),
   KEYPASS("pass(?=[^_A-Za-z])", false),
-  
-  //identifiers
-  IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])", false),
-  IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])", false),
-  IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])", false),
-  
+ 
+  WHITESPACE("[ \t\f\r\n]+", false), 
   COMMENT("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", false);
  
   

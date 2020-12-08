@@ -1,0 +1,83 @@
+
+PARSER_BEGIN(Parser)
+
+/**
+ * Simple brace matcher.
+ */
+public class Parser {
+    public static void main(String[] args) {
+        Parser parser;
+        
+			System.out.println("Reading from file " + args[0] + "…");
+
+            try {
+                parser = new Parser(new FileInputStream(args[0]));
+            } catch (FileNotFoundException fileNotFoundException) {
+                System.out.println("error: The file " + args[0] + " was not found.");
+                return;
+            }
+
+        try {
+            parser.parse();
+            System.out.println("Parsing was successful.");
+            ((ASTNode) parser.jjtree.rootNode()).dump("   ");
+            RuntimeNode.runRootNode((ASTNode) parser.jjtree.rootNode());
+        } catch (ParseException parseException) {
+            System.out.println("error: A `ParseException` was raised:");
+            System.out.println(parseException);
+        }
+    }
+}
+PARSER_END(Parser)
+
+SKIP: {
+    " "
+|   "[COMMENT]"
+|   "\t"
+|   "\n"
+|   "\r"
+
+}
+
+//tokens created by the Magenta lexer are used to declare the tokens for this parser
+
+TOKEN :
+{
+  <DECIMAL: "[DECIMAL \\d+(\\.\\d{1,2})?]">
+| <NUMBER: "[NUMBER (?<=\\s|^)\\d+(?=\\s|$)]">
+| <STRING: "[STRING \"[^\"]*\"]">
+| <BOOLEAN: "[BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z])]">
+| <IDENTCAPITALIZED: "[IDENTCAPITALIZED  [A-Z][_A-Za-z]*(?=[^_A-Za-z])]">
+| <IDENTLOWERCASE: "[IDENTLOWERCASE [a-z][_A-Za-z]*(?=[^_A-Za-z])]">
+| <IDENTUNDERSCORE: "[IDENTUNDERSCORE _[_A-Za-z]*(?=[^_A-Za-z])]">
+| <OPADD: "[OPADD]">
+| <OPSUBTRACT: "[OPSUBTRACT]">
+| <OPMULTIPLY: "[OPMULTIPLY]">
+| <OPDIVIDE: "[OPDIVIDE]">
+| <OPMODULO: "[OPMODULO]">
+| <OPEQUALTO: "[OPEQUALTO]">
+| <OPNOTEQUALTO: "[OPNOTEQUALTO]">
+| <OPGREATERTHAN: "[OPGREATERTHAN]">
+| <OPLESSTHAN: "[OPLESSTHAN]">
+| <OPGREATERTHANEQUALTO: "[OPGREATERTHANEQUALTO]">
+| <OPLESSTHANEQUALTO: "[OPLESSTHANEQUALTO]">
+| <OPAND: "[OPAND]">
+| <OPOR: "[OPOR]">
+| <OPNOT: "[OPNOT]">
+| <PUNCQUESTION: "[PUNCQUESTION]">
+| <PUNCCOLON: "[PUNCCOLON]">
+| <PUNCSEMICOLON: "[PUNCSEMICOLON]">
+| <PUNCCOMMA: "[PUNCCOMMA]">
+| <PUNCLEFTPAREN: "[PUNCLEFTPAREN]">
+| <PUNCRIGHTPAREN: "[PUNCRIGHTPAREN]">
+| <PUNCLEFTCURLY: "[PUNCLEFTCURLY]">
+| <PUNCRIGHTCURLY: "[PUNCRIGHTCURLY]">
+| <KEYIF: "[KEYIF]">
+| <KEYFOR: "[KEYFOR]">
+| <KEYWHILE: "[KEYWHILE]">
+| <KEYBLOCK: "[KEYBLOCK]">
+| <KEYEMIT: "[KEYEMIT]">
+| <KEYTASK: "[KEYTASK]">
+| <KEYNULL: "[KEYNULL]">
+| <KEYPASS: "[KEYPASS]">
+}
