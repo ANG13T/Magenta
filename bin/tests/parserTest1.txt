@@ -1,0 +1,21 @@
+task sing(amount) -> 
+	
+	String beverage = "beer"!
+
+	if(amount == null || amount < 1) -> 
+		emit "Invalid argument"
+		pass
+	<-
+	
+	Integer i = amount!
+	
+	while(i > 0) ->
+		emit i + " bottles of " + beverage + " on the wall"!
+		emit i + " bottles of " + beverage!
+		emit "Take one down and pass it around"!
+		emit (i - 1) + " bottles of " + beverage + " on the wall"!
+		i++!
+	<-
+
+
+<-

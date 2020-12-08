@@ -18,6 +18,19 @@ public enum TokenObjSet {
   IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])", false),
   IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])", false),
   
+  //punctuators
+  PUNCQUESTION("[?]", false),
+  PUNCCOLON("[:]", false),
+  PUNCSEMICOLON("[;]", false),
+  PUNCCOMMA("[,]", false),
+  PUNCLEFTPAREN("[(]", false),
+  PUNCRIGHTPAREN("[)]", false),
+  PUNCLEFTCURLY("[{]", false),
+  PUNCRIGHTCURLY("[}]", false),
+  PUNCOPENARROW("->", false),
+  PUNCCLOSEARROW("<-", false),
+
+  
   //operators
   OPADD("[+]", false),
   OPSUBTRACT("[-]", false),
@@ -34,16 +47,6 @@ public enum TokenObjSet {
   OPOR("\\|\\|", false),
   OPNOT("!", false),
   
-  //punctuators
-  PUNCQUESTION("[?]", false),
-  PUNCCOLON("[:]", false),
-  PUNCSEMICOLON("[;]", false),
-  PUNCCOMMA("[,]", false),
-  PUNCLEFTPAREN("[(]", false),
-  PUNCRIGHTPAREN("[)]", false),
-  PUNCLEFTCURLY("[{]", false),
-  PUNCRIGHTCURLY("[}]", false),
-
   
   //keywords
   KEYIF("if(?=[^_A-Za-z])", false),
@@ -54,6 +57,7 @@ public enum TokenObjSet {
   KEYTASK("task(?=[^_A-Za-z])", false),
   KEYNULL("null(?=[^_A-Za-z])", false),
   KEYPASS("pass(?=[^_A-Za-z])", false),
+  KEYSET("set(?=[^_A-Za-z])", false),
  
   WHITESPACE("[ \t\f\r\n]+", false), 
   COMMENT("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", false);
