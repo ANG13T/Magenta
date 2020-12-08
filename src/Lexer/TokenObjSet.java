@@ -9,7 +9,7 @@ public enum TokenObjSet {
   
   //basic data types
   DECIMAL("\\d+(\\.\\d{1,2})?", false),
-  NUMBER("(?<=\\s|^)\\d+(?=\\s|$)", false),
+  INTEGER("(?<=\\s|^)\\d+(?=\\s|$)", false),
   STRING("\"[^\"]*\"", false),
   BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", false),
   
@@ -82,5 +82,3 @@ public enum TokenObjSet {
   }
 }
 
-//PUNCLEFTSQUARE("[", false),
-//PUNCRIGHTSQUARE("]", false),

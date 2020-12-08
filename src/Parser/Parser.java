@@ -23,6 +23,53 @@ public class Parser implements ParserConstants {
         }
     }
 
+//basic data types of the programming language (decimal, integers, strings, and booleans)
+  static final public void data_types() throws ParseException {
+                     Token t;
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case DECIMAL:
+      data_type_decimal();
+      break;
+    case INTEGER:
+      data_type_integer();
+      break;
+    case STRING:
+      data_type_string();
+      break;
+    case BOOLEAN:
+      data_type_boolean();
+      break;
+    default:
+      jj_la1[0] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+  }
+
+  static final public void data_type_decimal() throws ParseException {
+                             Token t;
+    t = jj_consume_token(DECIMAL);
+          jjtThis.setFilteredValueForToken(t);
+  }
+
+  static final public void data_type_integer() throws ParseException {
+                             Token t;
+    t = jj_consume_token(INTEGER);
+          jjtThis.setFilteredValueForToken(t);
+  }
+
+  static final public void data_type_string() throws ParseException {
+                            Token t;
+    t = jj_consume_token(STRING);
+          jjtThis.setFilteredValueForToken(t);
+  }
+
+  static final public void data_type_boolean() throws ParseException {
+                             Token t;
+    t = jj_consume_token(BOOLEAN);
+          jjtThis.setFilteredValueForToken(t);
+  }
+
   static private boolean jj_initialized_once = false;
   /** Generated Token Manager. */
   static public ParserTokenManager token_source;
@@ -33,7 +80,7 @@ public class Parser implements ParserConstants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[0];
+  static final private int[] jj_la1 = new int[1];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -41,10 +88,10 @@ public class Parser implements ParserConstants {
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {};
+      jj_la1_0 = new int[] {0x3c0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {};
+      jj_la1_1 = new int[] {0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -65,7 +112,7 @@ public class Parser implements ParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -79,7 +126,7 @@ public class Parser implements ParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -96,7 +143,7 @@ public class Parser implements ParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -106,7 +153,7 @@ public class Parser implements ParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -122,7 +169,7 @@ public class Parser implements ParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -131,7 +178,7 @@ public class Parser implements ParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -187,7 +234,7 @@ public class Parser implements ParserConstants {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 0; i++) {
+    for (int i = 0; i < 1; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {

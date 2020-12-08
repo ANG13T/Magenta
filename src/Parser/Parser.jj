@@ -28,6 +28,44 @@ public class Parser {
 }
 PARSER_END(Parser)
 
+
+//basic data types of the programming language (decimal, integers, strings, and booleans)
+void data_types(): { Token t; } {
+   data_type_decimal()
+|  data_type_integer()
+|  data_type_string()
+|  data_type_boolean()
+}
+
+void data_type_decimal():  { Token t; } {
+	t = <DECIMAL>
+	{
+	  jjtThis.setFilteredValueForToken(t);
+	}
+}
+
+void data_type_integer():  { Token t; } {
+	t = <INTEGER>
+	{
+	  jjtThis.setFilteredValueForToken(t);
+	}
+}
+
+void data_type_string():  { Token t; } {
+	t = <STRING>
+	{
+	  jjtThis.setFilteredValueForToken(t);
+	}
+}
+
+void data_type_boolean():  { Token t; } {
+	t = <BOOLEAN>
+	{
+	  jjtThis.setFilteredValueForToken(t);
+	}
+}
+
+
 SKIP: {
     " "
 |   "[COMMENT]"
@@ -42,7 +80,7 @@ SKIP: {
 TOKEN :
 {
   <DECIMAL: "[DECIMAL \\d+(\\.\\d{1,2})?]">
-| <NUMBER: "[NUMBER (?<=\\s|^)\\d+(?=\\s|$)]">
+| <INTEGER: "[INTEGER (?<=\\s|^)\\d+(?=\\s|$)]">
 | <STRING: "[STRING \"[^\"]*\"]">
 | <BOOLEAN: "[BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z])]">
 | <IDENTCAPITALIZED: "[IDENTCAPITALIZED  [A-Z][_A-Za-z]*(?=[^_A-Za-z])]">

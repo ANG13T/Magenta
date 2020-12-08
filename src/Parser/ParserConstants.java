@@ -11,7 +11,7 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int DECIMAL = 6;
   /** RegularExpression Id. */
-  int NUMBER = 7;
+  int INTEGER = 7;
   /** RegularExpression Id. */
   int STRING = 8;
   /** RegularExpression Id. */
@@ -95,7 +95,7 @@ public interface ParserConstants {
     "\"\\n\"",
     "\"\\r\"",
     "\"[DECIMAL \\\\d+(\\\\.\\\\d{1,2})?]\"",
-    "\"[NUMBER (?<=\\\\s|^)\\\\d+(?=\\\\s|$)]\"",
+    "\"[INTEGER (?<=\\\\s|^)\\\\d+(?=\\\\s|$)]\"",
     "\"[STRING \\\"[^\\\"]*\\\"]\"",
     "\"[BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z])]\"",
     "\"[IDENTCAPITALIZED  [A-Z][_A-Za-z]*(?=[^_A-Za-z])]\"",
