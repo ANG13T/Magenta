@@ -18,7 +18,54 @@ public class Parser {
 PARSER_END(Parser)
 
 
-void identifiers(): { Token t; } {
+//instantiate a class
+void class_instantiation(): { } {
+	identifier() <PUNCLEFTPAREN> values() <PUNCRIGHTPAREN>
+}
+
+//calling a method from a class
+void class_method(): { } {
+	identifier() <PUNCPERIOD> function_invokation()
+}
+
+//get property of class
+void class_property_get(): {} {
+	identifier() <PUNCPERIOD> lowercase_identifier()
+} 
+
+//calling a function
+void func_call(): {} {
+	<KEYTASK> identifier() <PUNCLEFTPAREN> values() <PUNCRIGHTPAREN>
+} 
+
+//assign a variable
+void variable_assignment(): {} {
+	identifier() <PUNCEQUALSIGN> value() <PUNCSEMICOLON>
+}
+
+//multiple variable assignments
+void variable_assignments(): {} {
+	(
+        LOOKAHEAD(2)
+        variable_assignment()
+    )*
+}  
+
+//declare a variable
+void variable_declaration(): {} {
+	type() identifier() <PUNCEQUALSIGN> value() <PUNCSEMICOLON>
+}
+
+//declare multiple variables
+void variable_declarations(): {} {
+	(
+        LOOKAHEAD(2)
+        variable_declaration()
+    )*
+}
+
+
+void identifier(): { Token t; } {
 	underscore_identifier()
 | 	lowercase_identifier()
 }
@@ -175,6 +222,8 @@ TOKEN :
 | <PUNCCOLON: "[PUNCCOLON]">
 | <PUNCSEMICOLON: "[PUNCSEMICOLON]">
 | <PUNCCOMMA: "[PUNCCOMMA]">
+| <PUNCPERIOD: "[PUNCPERIOD]" >
+| <PUNCEQUALSIGN: "[PUNCEQUALSIGN]">
 | <PUNCLEFTPAREN: "[PUNCLEFTPAREN]">
 | <PUNCRIGHTPAREN: "[PUNCRIGHTPAREN]">
 | <PUNCLEFTCURLY: "[PUNCLEFTCURLY]">
