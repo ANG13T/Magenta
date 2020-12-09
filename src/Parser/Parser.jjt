@@ -1,3 +1,11 @@
+options {
+    STATIC = false;
+    MULTI = true;
+    NODE_PREFIX = "ASTGenerated_";
+    NODE_CLASS = "ASTNode";
+    NODE_PACKAGE = "Magenta.parser.generatednodes";
+    DEBUG_PARSER = true;
+}
 
 PARSER_BEGIN(Parser)
 
@@ -8,6 +16,8 @@ public class Parser {
         try {
             Parser parser = new Parser(new FileInputStream(args[0]));
             parser.parse();
+            ((ASTNode) parser.jjtree.rootNode()).dump("   ");
+            RuntimeNode.runRootNode((ASTNode) parser.jjtree.rootNode());
         } catch (Exception exception) {
             System.out.println("Something went wrong.");
             System.out.println("Exception: ");
