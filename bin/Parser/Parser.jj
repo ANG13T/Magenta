@@ -25,7 +25,7 @@ void class_instantiation(): { } {
 
 //calling a method from a class
 void class_method(): { } {
-	identifier() <PUNCPERIOD> function_invokation()
+	identifier() <PUNCPERIOD> func_call()
 }
 
 //get property of class
@@ -130,7 +130,7 @@ void statement_emit(): {} {
 }
 
 //basic data types of the programming language (decimal, integers, strings, and booleans)
-void data_types(): { Token t; } {
+void data_type(): { Token t; } {
    data_type_decimal()
 |  data_type_integer()
 |  data_type_string()
@@ -163,6 +163,77 @@ void data_type_boolean():  { Token t; } {
 	{
 	  jjtThis.setFilteredValueForToken(t);
 	}
+}
+
+void value(): {} {
+	LOOKAHEAD(3)
+    expression_no_parenthesis()
+|   LOOKAHEAD(3)
+    (<OPNOT>)?
+    expression_parenthesis()
+|   LOOKAHEAD(2)
+    (<OPNOT>)?
+    data_type()
+|   LOOKAHEAD(2)
+    class_method()
+|   LOOKAHEAD(2)
+    class_property_get()
+|   LOOKAHEAD(2)
+    (<OPNOT>)?
+    func_call()
+|   LOOKAHEAD(2)
+    class_instantiation()
+|   LOOKAHEAD(2)
+    (<OPNOT>)?
+    identifier()
+}
+
+void values(): {} {
+	(
+	  value()
+	  (
+	    <PUNCCOMMA> value()	  )	)
+}
+
+void val_no_expression_no_parenthesis(): {} {
+	LOOKAHEAD(2)
+    (<OPNOT>)?
+    expression_parenthesis()
+|   LOOKAHEAD(2)
+    (<OPNOT>)?
+    data_type()
+|   LOOKAHEAD(2)
+    (<OPNOT>)?
+    identifier()
+}
+
+void val_no_expression(): {} {
+	LOOKAHEAD(2)
+    (<OPNOT>)?
+    identifier()
+|   LOOKAHEAD(2)
+    (<OPNOT>)?
+    data_type()
+}
+
+void expression_no_parenthesis(): {} {
+	val_no_expression()
+    (
+        LOOKAHEAD(2)
+        operators()
+        val_no_expression_no_parenthesis()
+    )+
+}
+
+void expression_parenthesis(): {} {
+	<PUNCLEFTPAREN>
+	val_no_expression_no_parenthesis()
+    (
+        LOOKAHEAD(2)
+        operators()
+        val_no_expression_no_parenthesis()
+    )+
+	<PUNCRIGHTPAREN>
 }
 
 //used to detect the operator tokens used (addition, subtraction, multiplication, division, modulo, and logical operaters such as &&, ||, >=, <=, ==, etc) are all included

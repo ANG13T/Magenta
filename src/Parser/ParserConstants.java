@@ -59,29 +59,37 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int PUNCCOMMA = 30;
   /** RegularExpression Id. */
-  int PUNCLEFTPAREN = 31;
+  int PUNCPERIOD = 31;
   /** RegularExpression Id. */
-  int PUNCRIGHTPAREN = 32;
+  int PUNCEQUALSIGN = 32;
   /** RegularExpression Id. */
-  int PUNCLEFTCURLY = 33;
+  int PUNCLEFTPAREN = 33;
   /** RegularExpression Id. */
-  int PUNCRIGHTCURLY = 34;
+  int PUNCRIGHTPAREN = 34;
   /** RegularExpression Id. */
-  int KEYIF = 35;
+  int PUNCLEFTCURLY = 35;
   /** RegularExpression Id. */
-  int KEYFOR = 36;
+  int PUNCRIGHTCURLY = 36;
   /** RegularExpression Id. */
-  int KEYWHILE = 37;
+  int PUNCOPENARROW = 37;
   /** RegularExpression Id. */
-  int KEYBLOCK = 38;
+  int PUNCCLOSEARROW = 38;
   /** RegularExpression Id. */
-  int KEYEMIT = 39;
+  int KEYIF = 39;
   /** RegularExpression Id. */
-  int KEYTASK = 40;
+  int KEYFOR = 40;
   /** RegularExpression Id. */
-  int KEYNULL = 41;
+  int KEYWHILE = 41;
   /** RegularExpression Id. */
-  int KEYPASS = 42;
+  int KEYBLOCK = 42;
+  /** RegularExpression Id. */
+  int KEYEMIT = 43;
+  /** RegularExpression Id. */
+  int KEYTASK = 44;
+  /** RegularExpression Id. */
+  int KEYNULL = 45;
+  /** RegularExpression Id. */
+  int KEYPASS = 46;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -119,10 +127,14 @@ public interface ParserConstants {
     "\"[PUNCCOLON]\"",
     "\"[PUNCSEMICOLON]\"",
     "\"[PUNCCOMMA]\"",
+    "\"[PUNCPERIOD]\"",
+    "\"[PUNCEQUALSIGN]\"",
     "\"[PUNCLEFTPAREN]\"",
     "\"[PUNCRIGHTPAREN]\"",
     "\"[PUNCLEFTCURLY]\"",
     "\"[PUNCRIGHTCURLY]\"",
+    "\"[PUNCOPENARROW]\"",
+    "\"[PUNCCLOSEARROW]\"",
     "\"[KEYIF]\"",
     "\"[KEYFOR]\"",
     "\"[KEYWHILE]\"",
