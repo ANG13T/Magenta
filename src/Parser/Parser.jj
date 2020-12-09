@@ -4,30 +4,83 @@ PARSER_BEGIN(Parser)
 
 public class Parser {
     public static void main(String[] args) {
-        Parser parser;
-        
-		System.out.println("Reading from file " + args[0] + "…");
 
         try {
-            parser = new Parser(new FileInputStream(args[0]));
-        } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("error: The file " + args[0] + " was not found.");
-            return;
-        }
-
-        try {
+            Parser parser = new Parser(new FileInputStream(args[0]));
             parser.parse();
-            System.out.println("Parsing was successful.");
-            ((ASTNode) parser.jjtree.rootNode()).dump("   ");
-            RuntimeNode.runRootNode((ASTNode) parser.jjtree.rootNode());
-        } catch (ParseException parseException) {
-            System.out.println("error: A `ParseException` was raised:");
-            System.out.println(parseException);
+        } catch (Exception exception) {
+            System.out.println("Something went wrong.");
+            System.out.println("Exception: ");
+            System.out.println(exception);
         }
     }
 }
 PARSER_END(Parser)
 
+
+void identifiers(): { Token t; } {
+	underscore_identifier()
+| 	lowercase_identifier()
+}
+
+//holds the identifier (name) for functions and variables
+
+void underscore_identifier(): {Token t; } {
+	t = <IDENTUNDERSCORE>
+
+	{
+	  jjtThis.setFilteredValueForToken(t);
+	} 
+}
+
+void lowercase_identifier(): {Token t; } {
+	t = <IDENTLOWERCASE>
+
+	{
+	  jjtThis.setFilteredValueForToken(t);
+	} 
+}
+
+void type_name(): { Token t; } {
+	t = <IDENTCAPITALIZED>
+	{
+	   jjtThis.setFilteredValueForToken(t);
+	}
+}
+
+void type(): {} {
+	LOOKAHEAD(2)
+	type_name()
+}
+
+
+void statements(): {} {
+
+  	statement_pass()
+| 	statement_if()
+|   statement_while()
+|   statement_emit()
+}
+
+void statement_pass(): {} {
+	<KEYPASS> value()
+}
+
+void statement_if(): {} {
+	<KEYIF> value() <PUNCOPENARROW>
+
+	<PUNCCLOSEARROW>
+}
+
+void statement_while(): {} {
+	<KEYWHILE> value() <PUNCOPENARROW>
+
+	<PUNCCLOSEARROW>
+}
+
+void statement_emit(): {} {
+	<KEYEMIT> value()
+}
 
 //basic data types of the programming language (decimal, integers, strings, and booleans)
 void data_types(): { Token t; } {
@@ -63,6 +116,24 @@ void data_type_boolean():  { Token t; } {
 	{
 	  jjtThis.setFilteredValueForToken(t);
 	}
+}
+
+//used to detect the operator tokens used (addition, subtraction, multiplication, division, modulo, and logical operaters such as &&, ||, >=, <=, ==, etc) are all included
+void operators(): { Token t; } {
+	<OPADD>
+|   <OPSUBTRACT>
+|   <OPDIVIDE>
+|   <OPMULTIPLY>
+|   <OPMODULO>
+| 	<OPEQUALTO>
+| 	<OPNOTEQUALTO>
+| 	<OPGREATERTHAN>
+| 	<OPLESSTHAN>
+| 	<OPGREATERTHANEQUALTO>
+| 	<OPLESSTHANEQUALTO>
+| 	<OPAND>
+| 	<OPOR>
+| 	<OPNOT>
 }
 
 
@@ -108,6 +179,8 @@ TOKEN :
 | <PUNCRIGHTPAREN: "[PUNCRIGHTPAREN]">
 | <PUNCLEFTCURLY: "[PUNCLEFTCURLY]">
 | <PUNCRIGHTCURLY: "[PUNCRIGHTCURLY]">
+| <PUNCOPENARROW: "[PUNCOPENARROW]">
+| <PUNCCLOSEARROW: "[PUNCCLOSEARROW]">
 | <KEYIF: "[KEYIF]">
 | <KEYFOR: "[KEYFOR]">
 | <KEYWHILE: "[KEYWHILE]">
