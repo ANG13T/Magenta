@@ -21,6 +21,7 @@ public enum TokenObjSet {
   //punctuators
   PUNCQUESTION("[?]", false),
   PUNCCOLON("[:]", false),
+  PUNCPERIOD("[.]", false),
   PUNCEQUALSIGN("[=]", false),
   PUNCSEMICOLON("[;]", false),
   PUNCCOMMA("[,]", false),
