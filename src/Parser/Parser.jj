@@ -17,6 +17,70 @@ public class Parser {
 }
 PARSER_END(Parser)
 
+void parse(): {} {
+    (
+        LOOKAHEAD(2)
+        class_declaration()
+    |   LOOKAHEAD(4)
+        func_declaration()
+    |   func_action()
+    )*
+}
+
+void func_action(): {} {
+	LOOKAHEAD(2)
+	variable_declaration()
+	LOOKAHEAD(2)
+	variable_assignment()
+	LOOKAHEAD(2)
+	class_method() <PUNCSEMICOLON>
+|   func_call() <PUNCSEMICOLON>
+|   (statements() (<PUNCSEMICOLON>)?)
+}
+
+
+void func_actions(): {} {
+	(
+	  LOOKAHEAD(2)
+	  func_action()	)*
+}
+
+void func_declaration(): {} {
+  	<KEYTASK>
+	identifier()
+	<PUNCLEFTPAREN>
+	params()
+	<PUNCRIGHTPAREN>
+	type()
+	<PUNCOPENARROW>
+    func_action()
+    <PUNCCLOSEARROW>
+}
+
+void param(): {} {
+	type() identifier()
+}
+
+void params(): {} {
+	(
+	  LOOKAHEAD(2)
+	  <PUNCCOMMA> param()	)*
+}
+
+void func_declartions(): {} {
+ (
+   func_declaration() )*
+}
+
+void class_declaration(): {} {
+  	<KEYBLOCK>
+	type_name()
+    <PUNCOPENARROW>
+    variable_assignments()
+    variable_declarations()
+    func_declartions()
+    <PUNCCLOSEARROW>
+}
 
 //instantiate a class
 void class_instantiation(): { } {
