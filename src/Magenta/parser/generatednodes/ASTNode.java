@@ -1,8 +1,8 @@
-package Parser;
+package Magenta.parser.generatednodes;
 
 import java.util.Arrays;
 
-import Magenta.parser.generatednodes.Parser;
+import Parser.Token;
 
 public class ASTNode extends SimpleNode implements Node {
 	public ASTNode(int id) {
