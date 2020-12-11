@@ -114,10 +114,7 @@ public class ClassRepresentation<B> {
     }
     
     for(String defKey: defaultProps.keySet()) {
-      props.put(
-          defKey,
-          new ClassRepresentation<Object>(defaultProps.get(defKey))
-      );
+      props.put(defKey, new ClassRepresentation<Object>(defaultProps.get(defKey)));
     }
     
     return props;

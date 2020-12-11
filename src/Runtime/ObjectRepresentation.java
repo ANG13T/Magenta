@@ -4,11 +4,11 @@ import java.util.LinkedHashMap;
 
 public class ObjectRepresentation<B> {
   private PropertyContainer props;
-  private CreatedClass<B> objectClass;
+  private ClassRepresentation<B> objectClass;
   private B baseVal;
   
   
-  ObjectRepresentation(CreatedClass<B> object,
+  ObjectRepresentation(ClassRepresentation<B> object,
       B value){
     this.objectClass = object;
     this.baseVal = value;
@@ -20,13 +20,13 @@ public class ObjectRepresentation<B> {
     this.baseVal = obj.baseVal;
     
     if(obj.props.size() > 0) {
-      this.props = obj.getObjectClassRepresentation().getPropertiesCopy();
+      this.props = obj.getObjectClassRepresentation().getProps();
     }else {
-      this.props = new PropertyMap();
+      this.props = new PropertyContainer();
     }
   }
   
-  public CreatedClass getObjectClassRepresentation() {
+  public ClassRepresentation getObjectClassRepresentation() {
     return objectClass;
   }
   
@@ -42,7 +42,7 @@ public class ObjectRepresentation<B> {
     props.put(identifier, val);
   }
   
-  public ObjectRepresentation runMethod(String name, CreatedClass args) {
+  public ObjectRepresentation runMethod(String name, ObjectRepresentation[] args) {
     return objectClass.getMethod(name).call(this, args);
   }
   
