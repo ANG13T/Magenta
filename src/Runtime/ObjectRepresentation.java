@@ -2,7 +2,7 @@ package Runtime;
 
 import java.util.LinkedHashMap;
 
-public class ObjectRepresentation {
+public class ObjectRepresentation<B> {
   private PropertyContainer props;
   private CreatedClass<B> objectClass;
   private B baseVal;
