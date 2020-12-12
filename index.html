@@ -21,26 +21,59 @@
     <div class="main">
         <div class="cards">
             <div class="card">
-                <i class="fas fa-landmark" class="logo-image"></i>
+                <div class="logo-image">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                
                 <div class="card-body">
                     <h2 class="card-text">Structured</h2>
                 </div>
             </div>
 
             <div class="card">
-                <i class="fas fa-layer-group" class="logo-image"></i>
+                <div class="logo-image">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+        
                 <div class="card-body">
                     <h2 class="card-text">Organized</h2>
                 </div>
             </div>
 
             <div class="card">
-                <i class="fas fa-road" class="logo-image"></i>
+                <div class="logo-image">
+                    <i class="fas fa-road"></i>
+                </div>
+                
                 <div class="card-body">
                     <h2 class="card-text">Simple</h2>
                 </div>
             </div>
         </div>
+
+        <h3 class="features">Features</h3>
+        <pre class='prettyprint'>
+    code,
+    .code,
+    pre {
+        font-family: 'Source Code Pro';
+        background: $char;
+        color: $lightGray;
+        font-size: 16px;
+        padding: 0;
+        padding: 10px;
+        &:before {
+        display: block;
+        width: calc(100% + 10px);
+        margin-top: -10px;
+        margin-left: -10px;
+        padding: 5px;
+        text-transform: uppercase;
+        content: attr(data-lang);
+        background: $medBlue;
+        }
+    }
+        </pre>
     </div>
 
     <footer>
