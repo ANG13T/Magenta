@@ -23,7 +23,7 @@ body{
 
 .logo-image{
     margin-top: 1rem;
-    font-size: 5rem !important;
+    font-size: 5.5rem !important;
     color: rgb(202, 83, 202) !important;
     text-align: center;
 }
@@ -45,8 +45,8 @@ footer{
     bottom: 0;
     width: 100%;
     color: white;
-    background-color: #da86da;
-    border: 1rem solid #da86da;
+    background-color:rgb(167, 29, 167);
+    border: 1rem solid rgb(168, 28, 168);
 }
 
 h3{
