@@ -27,7 +27,7 @@ public class FunctionRepresentation<B> {
   }
   
   public ObjectRepresentation call(ObjectRepresentation<B> receiever, ObjectRepresentation[] args) {
-      RuntimeContext currentContext = new RuntimeContext(receiver);
+      RuntimeContext currentContext = new RuntimeContext(receiever);
       int i = 0;
       
       if (args.length != params.size()) {
@@ -38,11 +38,11 @@ public class FunctionRepresentation<B> {
     }
   
     for (String parameterName : params.keySet()) {
-        if (params.get(parameterName) != args[i].getObjectClass()) {
+        if (params.get(parameterName) != args[i].getObjectClassRepresentation()) {
             throw new ArgumentException(
                 "Parameter " + i + " is not of the correct type. Expected type `"
                     + params.get(parameterName).toString() + "` but found `"
-                    + args[i].getObjectClass().toString() + "` for function `"
+                    + args[i].getObjectClassRepresentation().toString() + "` for function `"
                     + name + "`."
             );
         }
@@ -61,17 +61,17 @@ public class FunctionRepresentation<B> {
         true
     );
   
-    if (returnClass == RuntimeContext.getClass("Void")) {
-        if (result != RuntimeContext.getGlobal("und")) {
+    if (returnClass == RuntimeContext.getClass("void")) {
+        if (result != RuntimeContext.getGlobalObject("undefined")) {
             throw new ReturnException(
                 "Function returned a result, but `und` was expected."
             );
         }
     } else {
         if (
-            result.getObjectClass() != returnClass
-                && result != RuntimeContext.getGlobal("nil")
-                || result == RuntimeContext.getGlobal("und")
+            result.getObjectClassRepresentation() != returnClass
+                && result != RuntimeContext.getGlobalObject("null")
+                || result == RuntimeContext.getGlobalObject("undefined")
         ) {
             throw new ReturnException(
                 "An incorrect return type was found."
