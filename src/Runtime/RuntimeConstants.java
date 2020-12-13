@@ -379,4 +379,64 @@ public class RuntimeConstants {
     classToUse.addMethod(identifier, funcRep);
   }
   
+  static ClassRepresentation<Long> getIntegerClass(){
+   return integerClass; 
+  }
+  
+  static ClassRepresentation<Double> getDoubleClass(){
+    return decimalClass; 
+   }
+  
+  static ClassRepresentation<String> getStringClass(){
+    return stringClass; 
+  }
+  
+  static ClassRepresentation<Boolean> getBooleanClass(){
+    return booleanClass; 
+  }
+  
+  static ClassRepresentation<Object> getObjectClass(){
+    return objectClass; 
+  }
+  
 }
+
+class BooleanFunctionRepresentation extends ObjectRepresentation<Boolean>{
+
+  BooleanFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
+    super(params, func, returnRep);
+  }
+  
+}
+
+class StringFunctionRepresentation extends ObjectRepresentation<String>{
+
+  StringFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
+    super(params, func, returnRep);
+  }
+  
+}
+
+class DecimalFunctionRepresentation extends ObjectRepresentation<Double>{
+
+  DecimalFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
+    super(params, func, returnRep);
+  }
+  
+}
+
+
+class IntegerFunctionRepresentation extends ObjectRepresentation<Long>{
+
+  IntegerFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
+    super(params, func, returnRep);
+  }
+  
+}
+
+class BaseValueException extends RuntimeException {
+  public BaseValueException(String message) {
+      super(message);
+  }
+}
+
