@@ -83,7 +83,7 @@ public class ClassRepresentation<B> {
       );
     }
     
-    methods.put(func);
+    methods.put(name, func);
   }
   
   public PropertyContainer getProps() {
@@ -100,7 +100,7 @@ public class ClassRepresentation<B> {
         );
       }
       
-      if(props.get(overrideKey).getObjectClassRepresentation() != overridenProps.get(overrideKey).getClass()) {
+      if(props.get(overrideKey).getObjectClassRepresentation() != overridenProps.get(overrideKey).get) {
         throw new OverrideException(
             "Expected type `"
                 + props.get(overrideKey).getObjectClassRepresentation().toString()
@@ -110,11 +110,11 @@ public class ClassRepresentation<B> {
         );
       }
       
-      props.put(overrideKey, new ClassRepresentation<Object>(overridenProps.get(overrideKey)));
+      props.put(overrideKey, new ObjectRepresentation<Object>(overridenProps.get(overrideKey)));
     }
     
     for(String defKey: defaultProps.keySet()) {
-      props.put(defKey, new ClassRepresentation<Object>(defaultProps.get(defKey)));
+      props.put(defKey, new ObjectRepresentation<Object>(defaultProps.get(defKey)));
     }
     
     return props;
@@ -138,8 +138,8 @@ class OverrideException extends RuntimeException {
   }
 }
 
-class MethodContainer<B> extends LinkedHashMap<String, ClassRepresentation<Object>> {
+class MethodContainer<B> extends LinkedHashMap<String, FunctionRepresentation<Object>> {
 }
 
-class DefaultPropsContainer extends LinkedHashMap<String, ClassRepresentation<Object>> {
+class DefaultPropsContainer extends LinkedHashMap<String, ClassRepresentation> {
 }

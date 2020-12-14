@@ -23,12 +23,12 @@ public class RuntimeConstants {
     
     //functions
     RuntimeFunction equalsFunc = (RuntimeContext context) -> {
-      if(context.getOpenBaseValue().equals(context.getObject("other").getBaseValue())) {
+      if(context.getOpenBaseValue().equals(context.getObject("other").getBaseVal())) {
         return booleanClass.createObject(true);
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(integerClass, "equals", equalsFunc);
     addOperationFunction(decimalClass, "equals", equalsFunc);
@@ -36,12 +36,12 @@ public class RuntimeConstants {
     addOperationFunction(booleanClass, "equals", equalsFunc);
     
     RuntimeFunction notEqualsFunc = (RuntimeContext context) -> {
-      if(context.getOpenBaseValue().equals(context.getObject("other").getBaseValue())) {
+      if(context.getOpenBaseValue().equals(context.getObject("other").getBaseVal())) {
         return booleanClass.createObject(false);
       }
       
       return booleanClass.createObject(true);
-    }
+    };
     
     addOperationFunction(integerClass, "notEqual", notEqualsFunc);
     addOperationFunction(decimalClass, "notEqual", notEqualsFunc);
@@ -57,7 +57,7 @@ public class RuntimeConstants {
       String str2 = (String) context.getObject("other").getBaseVal();
       
       return stringClass.createObject(str + str2);
-    }
+    };
     
     addOperationFunction(stringClass, "addition", stringAddition);
     
@@ -70,7 +70,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(booleanClass, "addition", booleanAddition);
     
@@ -79,7 +79,7 @@ public class RuntimeConstants {
       Long num2 = (long) context.getObject("other").getBaseVal();
       
       return integerClass.createObject(num + num2);
-    }
+    };
     
     addOperationFunction(integerClass, "addition", numberAddition);
     
@@ -88,7 +88,7 @@ public class RuntimeConstants {
       Double num2 = (double) context.getObject("other").getBaseVal();
       
       return decimalClass.createObject(num + num2);
-    }
+    };
     
     addOperationFunction(decimalClass, "addition", decimalAddition);
     
@@ -99,7 +99,7 @@ public class RuntimeConstants {
       Long num2 = (long) context.getObject("other").getBaseVal();
       
       return integerClass.createObject(num - num2);
-    }
+    };
     
     addOperationFunction(integerClass, "subtraction", integerSubtraction);
     
@@ -108,7 +108,7 @@ public class RuntimeConstants {
       Double num2 = (double) context.getObject("other").getBaseVal();
       
       return decimalClass.createObject(num - num2);
-    }
+    };
     
     addOperationFunction(decimalClass, "subtraction", decimalSubtraction);
     
@@ -119,7 +119,7 @@ public class RuntimeConstants {
       Long num2 = (long) context.getObject("other").getBaseVal();
       
       return integerClass.createObject(num / num2);
-    }
+    };
     
     addOperationFunction(integerClass, "division", integerDivision);
     
@@ -128,7 +128,7 @@ public class RuntimeConstants {
       Double num2 = (double) context.getObject("other").getBaseVal();
       
       return decimalClass.createObject(num / num2);
-    }
+    };
     
     addOperationFunction(decimalClass, "division", decimalDivison);
     
@@ -139,7 +139,7 @@ public class RuntimeConstants {
       Long num2 = (long) context.getObject("other").getBaseVal();
       
       return integerClass.createObject(num * num2);
-    }
+    };
     
     addOperationFunction(integerClass, "multiplication", integerMultiplication);
     
@@ -148,7 +148,7 @@ public class RuntimeConstants {
       Double num2 = (double) context.getObject("other").getBaseVal();
       
       return decimalClass.createObject(num * num2);
-    }
+    };
     
     addOperationFunction(decimalClass, "multiplication", decimalMultiplication);
     
@@ -159,7 +159,7 @@ public class RuntimeConstants {
       Long num2 = (long) context.getObject("other").getBaseVal();
       
       return integerClass.createObject(num % num2);
-    }
+    };
     
     addOperationFunction(integerClass, "modulo", integerModulo);
     
@@ -168,7 +168,7 @@ public class RuntimeConstants {
       Double num2 = (double) context.getObject("other").getBaseVal();
       
       return decimalClass.createObject(num % num2);
-    }
+    };
     
     addOperationFunction(decimalClass, "modulo", decimalModulo);
     
@@ -183,7 +183,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(booleanClass, "orStatement", orStatement);
     
@@ -196,7 +196,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(booleanClass, "andStatement", andStatement);
     
@@ -211,7 +211,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(integerClass, "greaterThan", integerGreaterThan);
     
@@ -224,7 +224,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(decimalClass, "greaterThan", decimalGreaterThan);
     
@@ -239,7 +239,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(integerClass, "lessThan", integerLessThan);
     
@@ -252,7 +252,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(decimalClass, "lessThan", decimalLessThan);
     
@@ -267,7 +267,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(integerClass, "greaterThanEqual", integerGreaterThanEqual);
     
@@ -280,7 +280,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(decimalClass, "greaterThanEqual", decimalGreaterThanEqual);
     
@@ -294,7 +294,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(integerClass, "lessThanEqual", integerLessThanEqual);
     
@@ -307,7 +307,7 @@ public class RuntimeConstants {
       }
       
       return booleanClass.createObject(false);
-    }
+    };
     
     addOperationFunction(decimalClass, "lessThanEqual", decimalLessThanEqual);
     
@@ -316,7 +316,7 @@ public class RuntimeConstants {
     RuntimeFunction integerToString = (RuntimeContext context) -> {
       Long num = (Long) context.getOpenBaseValue();
       return stringClass.createObject(num.toString());
-    }
+    };
     
     addIndependentFunction(integerClass, "toString", integerToString, stringClass);
     
@@ -327,7 +327,7 @@ public class RuntimeConstants {
         return stringClass.createObject("true");
       }
       return stringClass.createObject("false");
-    }
+    };
     
     addIndependentFunction(booleanClass, "toString", booleanToString, stringClass);
     
@@ -335,7 +335,7 @@ public class RuntimeConstants {
       Double num = (double) context.getOpenBaseValue();
       
       return stringClass.createObject(num.toString());
-    }
+    };
     
     addIndependentFunction(decimalClass, "toString", decimalToString, stringClass);
     
@@ -345,7 +345,7 @@ public class RuntimeConstants {
       Long num = Long.parseLong(value);
       
       return integerClass.createObject(num);
-    }
+    };
     
     addIndependentFunction(stringClass, "toInteger", stringToInteger, integerClass);
     
@@ -355,7 +355,7 @@ public class RuntimeConstants {
       Double num = Double.parseDouble(value);
       
       return decimalClass.createObject(num);
-    }
+    };
     
     addIndependentFunction(stringClass, "toDecimal", stingToDecimal, decimalClass);
     
@@ -366,7 +366,7 @@ public class RuntimeConstants {
     
   }
   
-  static <B, RB> void addIndependentFunction(ClassRepresentation<B> classRep, String identifier, FunctionRepresentation func, ClassRepresentation returnRep) {
+  static <B, RB> void addIndependentFunction(ClassRepresentation<B> classRep, String identifier, RuntimeFunction func, ClassRepresentation<RB> returnRep) {
     ParameterContainer params = new ParameterContainer();
     FunctionRepresentation funcRep = new FunctionRepresentation<B>(params, func, returnRep, identifier);
     classRep.addMethod(identifier, funcRep);
@@ -401,7 +401,7 @@ public class RuntimeConstants {
   
 }
 
-class BooleanFunctionRepresentation extends ObjectRepresentation<Boolean>{
+class BooleanFunctionRepresentation extends FunctionRepresentation<Boolean>{
 
   BooleanFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
     super(params, func, returnRep);
@@ -409,7 +409,7 @@ class BooleanFunctionRepresentation extends ObjectRepresentation<Boolean>{
   
 }
 
-class StringFunctionRepresentation extends ObjectRepresentation<String>{
+class StringFunctionRepresentation extends FunctionRepresentation<String>{
 
   StringFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
     super(params, func, returnRep);
@@ -417,7 +417,7 @@ class StringFunctionRepresentation extends ObjectRepresentation<String>{
   
 }
 
-class DecimalFunctionRepresentation extends ObjectRepresentation<Double>{
+class DecimalFunctionRepresentation extends FunctionRepresentation<Double>{
 
   DecimalFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
     super(params, func, returnRep);
@@ -426,7 +426,7 @@ class DecimalFunctionRepresentation extends ObjectRepresentation<Double>{
 }
 
 
-class IntegerFunctionRepresentation extends ObjectRepresentation<Long>{
+class IntegerFunctionRepresentation extends FunctionRepresentation<Long>{
 
   IntegerFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
     super(params, func, returnRep);

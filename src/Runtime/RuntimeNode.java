@@ -3,6 +3,21 @@ package Runtime;
 import java.util.LinkedList;
 import java.util.List;
 
+import Magenta.parser.generatednodes.ASTGenerated_class_declaration;
+import Magenta.parser.generatednodes.ASTGenerated_class_method;
+import Magenta.parser.generatednodes.ASTGenerated_data_type;
+import Magenta.parser.generatednodes.ASTGenerated_data_type_boolean;
+import Magenta.parser.generatednodes.ASTGenerated_func_action;
+import Magenta.parser.generatednodes.ASTGenerated_func_call;
+import Magenta.parser.generatednodes.ASTGenerated_statement_emit;
+import Magenta.parser.generatednodes.ASTGenerated_statement_if;
+import Magenta.parser.generatednodes.ASTGenerated_statement_pass;
+import Magenta.parser.generatednodes.ASTGenerated_statement_while;
+import Magenta.parser.generatednodes.ASTGenerated_val_no_expression;
+import Magenta.parser.generatednodes.ASTGenerated_val_no_expression_no_parenthesis;
+import Magenta.parser.generatednodes.ASTGenerated_value;
+import Magenta.parser.generatednodes.ASTGenerated_variable_assignment;
+import Magenta.parser.generatednodes.ASTGenerated_variable_declaration;
 import Magenta.parser.generatednodes.ASTNode;
 
 public class RuntimeNode {
@@ -12,13 +27,13 @@ public class RuntimeNode {
   }
   
   public static void runASTNode(ASTNode n, RuntimeContext context, boolean insideFunc) {
-    if(n instanceof ASTGenerated_inside_function_action) {
+    if(n instanceof ASTGenerated_func_action) {
       runASTNode(n.getChild(0), context, insideFunc);
       return;
     }
     
-    if(n instanceof ASTGenerated_statement_call) {
-      runASTNode(node.getChild(0), context, insideFunc);
+    if(n instanceof ASTGenerated_func_call) {
+      runASTNode(n.getChild(0), context, insideFunc);
       return;
     }
     
@@ -43,7 +58,7 @@ public class RuntimeNode {
       context.updateObject(varName, assessedValue);
     }
     
-    if(n instanceof ASTGenerated_function_call) {
+    if(n instanceof ASTGenerated_func_call) {
       String funcName = n.getChild(0).getChild(0).getNodeValue();
       ASTNode[] vals = n.getChild(1).getChildren();
       List<ObjectRepresentation> args = new LinkedList<ObjectRepresentation>();
@@ -55,7 +70,7 @@ public class RuntimeNode {
       funcRep.call(context.getOpenObject(), args.toArray(new ObjectRepresentation[0]));
     }
     
-    if(n instanceof AST_class_method_call) {
+    if(n instanceof ASTGenerated_class_method) {
       String objName = n.getChild(0).getChild(0).getNodeValue();
       String funcName = n.getChild(1).getChild(0).getChild(1).getNodeValue();
       ASTNode[] vals = n.getChild(1).getChild(1).getChildren();
@@ -68,7 +83,7 @@ public class RuntimeNode {
       context.getObject(objName).runMethod(funcName, args.toArray(new ObjectRepresentation[0]));
     }
     
-    if(n instanceof AST_emit_statement) {
+    if(n instanceof ASTGenerated_statement_emit) {
       ObjectRepresentation assessedValue = assessASTNode(n.getChild(0), context);
       if(assessedValue.getObjectClassRepresentation() == RuntimeContext.getClass("String")) {
         System.out.println(assessedValue.getBaseVal());
@@ -81,12 +96,12 @@ public class RuntimeNode {
       return;
     }
     
-    if(n instanceof AST_return_statement) {
+    if(n instanceof ASTGenerated_statement_pass) {
       System.out.println("returned: " + assessASTNode(n.getChild(0), context));
       System.exit(0);
     }
     
-    if(n instanceof AST_while_statement) {
+    if(n instanceof ASTGenerated_statement_while) {
       ObjectRepresentation assessedValue = assessASTNode(n.getChild(0), context);
       if(assessedValue.getObjectClassRepresentation() != RuntimeConstants.getBooleanClass()) {
         throw new RuntimeNodeException("Expected `Boolean` type, but was not found.");
@@ -98,7 +113,7 @@ public class RuntimeNode {
     }
     
     
-    if(n instanceof AST_if_statement) {
+    if(n instanceof ASTGenerated_statement_if) {
       ObjectRepresentation assessedValue = assessASTNode(n.getChild(0), context);
       if(assessedValue.getObjectClassRepresentation() != RuntimeConstants.getBooleanClass()) {
         throw new RuntimeNodeException("Expected `Boolean` type, but was not found.");
@@ -110,7 +125,7 @@ public class RuntimeNode {
     }
     
     
-    if(n instanceof AST_class_declaration) {
+    if(n instanceof ASTGenerated_class_declaration) {
       ASTNode[] children = n.getChildren();
       String className = children[0].getNodeValue();
       String extendsClassName = children[1].getNodeValue();
@@ -198,7 +213,7 @@ public class RuntimeNode {
           n = n.getChild(0);
         }
         
-        if(n instanceof AST_Generated_return_call) {
+        if(n instanceof ASTGenerated_statement_pass) {
           return assessASTNode(n.getChildren()[0], context);
         }
         
@@ -216,7 +231,7 @@ public class RuntimeNode {
   
   
   public static ObjectRepresentation assessASTNode(ASTNode node, RuntimeContext context) {
-    if(node instanceof AST_Generated_Value || node instanceof ASTGenerated_value_without_expression || node instanceof ASTGenerated_value_without_expression_without_parenthesis) {
+    if(node instanceof ASTGenerated_value || node instanceof ASTGenerated_val_no_expression || node instanceof ASTGenerated_val_no_expression_no_parenthesis) {
       if(node.getChild(0) instanceof ASTGenerated_exclamation_point) {
         ObjectRepresentation assessedChildObj = assessASTNode(node.getChild(1), context);
         
@@ -234,11 +249,11 @@ public class RuntimeNode {
       return assessASTNode(node.getChildren()[0], context);
     }
     
-    if(node instanceof ASTGenerated_literal) {
+    if(node instanceof ASTGenerated_data_type) {
       return assessASTNode(node.getChildren()[0], context);
     }
     
-    if(node instanceof ASTGenerated_literal_boolean) {
+    if(node instanceof ASTGenerated_data_type_boolean) {
       if(node.getNodeValue() == "true") {
         return RuntimeConstants.getBooleanClass().createObject(true);
       }else if(node.getNodeValue() == "false"){
