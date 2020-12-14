@@ -238,6 +238,97 @@ public class RuntimeNode {
       return assessASTNode(node.getChildren()[0], context);
     }
     
+    if(node instanceof ASTGenerated_literal_boolean) {
+      if(node.getNodeValue() == "true") {
+        return RuntimeConstants.getBooleanClass().createObject(true);
+      }else if(node.getNodeValue() == "false"){
+        return RuntimeConstants.getBooleanClass().createObject(false);
+      }else {
+        throw new RuntimeNodeException("The values true or false were expected, but got: " + node.getNodeValue());
+      }
+    }
+    
+    if(node instanceof AST_Generated_string) {
+      if(!node.getNodeValue().startsWith("\"")) {
+        throw new RuntimeNodeException(
+            "Expected string to begin with `\"`, but none was found."
+        );
+      }
+      
+      if(!node.getNodeValue().endsWith("\"")) {
+        throw new RuntimeNodeException(
+            "Expected string to end with `\"`, but none was found."
+        );
+      }
+      
+      return RuntimeConstants.getStringClass().createObject(node.getNodeValue().substring(1, node.getNodeValue().length() - 1));
+    }
+    
+    if(node instanceof AST_Generated_integer) {
+      return RuntimeConstants.getIntegerClass().createObject(Long.parseLong(node.getNodeValue()));
+    }
+    
+    if(node instanceof ASTGenerated_normal_name) {
+      return context.getObject(node.getChild(0).getNodeValue());
+    }
+    
+    if(node instanceof AST_Generated_decimal) {
+      return RuntimeConstants.getDoubleClass().createObject(Double.parseDouble(node.getNodeValue()));
+    }
+    
+    if(node instanceof AST_Generated_function_call) {
+      String funcName = node.getChild(0).getChild(0).getNodeValue();
+      ASTNode[] vals = node.getChild(1).getChildren();
+      List<ObjectRepresentation> args = new LinkedList<ObjectRepresentation>();
+      
+      for(int i = 0; i < vals.length; i++) {
+        args.add(assessASTNode(vals[i], context));
+      }
+      
+      FunctionRepresentation funcRep = context.getFunction(funcName);
+      return funcRep.call(
+          context.getOpenObject(),
+          args.toArray(new ObjectRepresentation[0])
+      );
+    }
+    
+    if(node instanceof AST_Generated_class_call) {
+      String classIdentifier = node.getChild(0).getChild(0).getNodeValue();
+      ASTNode[] vals = node.getChild(1).getChildren();
+      List<ObjectRepresentation> args = new LinkedList<ObjectRepresentation>();
+      
+      for(int i = 0; i < vals.length; i++) {
+        args.add(assessASTNode(vals[i], context));
+      }
+      
+      ClassRepresentation createdClass = RuntimeContext.getClass(classIdentifier);
+      return createdClass.createObject(
+          args.toArray(new ObjectRepresentation[0]),
+          null
+      );
+    }
+    
+    if(node instanceof ASTGenerated_class_method_call) {
+      String objIdentifier = node.getChild(0).getChild(0).getNodeValue();
+      String methodName = node.getChild(1).getChild(0).getNodeValue();
+      ASTNode[] vals = node.getChild(1).getChild(1).getChildren();
+      List<ObjectRepresentation> args = new LinkedList<ObjectRepresentation>();
+      
+      for(int i = 0; i < vals.length; i++) {
+        args.add(assessASTNode(vals[i], context));
+      }
+      
+      return context.getObject(objIdentifier).runMethod(methodName, args.toArray(new ObjectRepresentation[0]));
+    }
+    
+    if(node instanceof ASTGenerated_class_property_get) {
+      String objIdentifier = node.getChild(0).getChild(0).getNodeValue();
+      String propIdentifier = node.getChild(1).getNodeValue();
+      
+      return context.getObject(objIdentifier).getProp(propIdentifier);
+    }
+    
+    
   }
   
   
