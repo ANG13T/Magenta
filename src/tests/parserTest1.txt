@@ -1,4 +1,4 @@
-task sing(amount) -> 
+Vacant task sing (amount) -> 
 	
 	String beverage = "beer"!
 
