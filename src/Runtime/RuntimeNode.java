@@ -168,9 +168,79 @@ public class RuntimeNode {
       
     }
     
+    if(n instanceof AST_function_declaration) {
+      String funcName = n.getChild(0).getChild(0).getNodeValue();
+      ASTNode[] params = n.getChild(1).getChildren();
+      String returnTypeIdentifier = n.getChild(2).getChild(0).getNodeValue();
+      ASTNode body = n.getChild(3);
+      ParameterContainer parameters = new ParameterContainer();
+      
+      for(int j = 0; j < params.length; j++) {
+        String typeIdentifier = params[j].getChild(0).getChild(0).getNodeValue();
+        String paramIdentifier = params[j].getChild(1).getChild(0).getNodeValue();
+        parameters.put(typeIdentifier, RuntimeContext.getClass(typeIdentifier));
+      }
+      
+      RuntimeContext.setGlobalFunction(funcName, new ClassRepresentation<Object>(params, body, RuntimeContext.getClass(returnTypeIdentifier), funcName));
+    }
+  }
+  
+  public static ObjectRepresentation runASTNodes(ASTNode[] nodes, RuntimeContext context, boolean insideFunc) {
+    for(int i = 0; i < nodes.length; i++) {
+      if(insideFunc) {
+        ASTNode n = nodes[i];
+        
+        if(n instanceof AST_Generated_inside_function_action) {
+          n = n.getChild(0);
+        }
+        
+        if(n instanceof AST_Generated_statement_call) {
+          n = n.getChild(0);
+        }
+        
+        if(n instanceof AST_Generated_return_call) {
+          return assessASTNode(n.getChildren()[0], context);
+        }
+        
+      }
+      
+      runASTNode(nodes[i], context, insideFunction);
+    }
     
+    if(!insideFunc) {
+      return null;
+    }else {
+      return RuntimeContext.getGlobalObject("undefined");
+    }
+  }
+  
+  
+  public static ObjectRepresentation assessASTNode(ASTNode node, RuntimeContext context) {
+    if(node instanceof AST_Generated_Value || node instanceof ASTGenerated_value_without_expression || node instanceof ASTGenerated_value_without_expression_without_parenthesis) {
+      if(node.getChild(0) instanceof ASTGenerated_exclamation_point) {
+        ObjectRepresentation assessedChildObj = assessASTNode(node.getChild(1), context);
+        
+        if(assessedChildObj.getObjectClassRepresentation() != RuntimeConstants.getBooleanClass()) {
+          throw new RuntimeNodeException("Expected `Boolean` type, but was not found.");
+        }
+        
+        return assessedChildObj.runMethod(
+            "equals",
+            new ObjectRepresentation[] {
+                RuntimeConstants.getBooleanClass().createObject(false)
+            }
+        );
+      }
+      return assessASTNode(node.getChildren()[0], context);
+    }
+    
+    if(node instanceof ASTGenerated_literal) {
+      return assessASTNode(node.getChildren()[0], context);
+    }
     
   }
+  
+  
 }
 
 class RuntimeNodeException extends RuntimeException {
