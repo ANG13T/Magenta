@@ -109,6 +109,67 @@ public class RuntimeNode {
       }
     }
     
+    
+    if(n instanceof AST_class_declaration) {
+      ASTNode[] children = n.getChildren();
+      String className = children[0].getNodeValue();
+      String extendsClassName = children[1].getNodeValue();
+      ClassRepresentation extendsClass;
+      
+      if(extendsClassName == null || extendsClassName == "") {
+        extendsClass = RuntimeConstants.getObjectClass();
+      }else {
+        extendsClass = RuntimeContext.getClass(extendsClassName);
+      }
+      
+      DefaultPropertyMap extendsOverrides = new DefaultPropertyMap();
+      DefaultPropertyMap defProps = new DefaultPropertyMap();
+      MethodContainer<ObjectRepresentation> methods = new MethodContainer<ObjectRepresentation>();
+      ASTNode[] overrideIdentifiers = children[2].getChildren();
+      ASTNode[] propNodes = children[3].getChildren();
+      ASTNode[] functionNodes = children[4].getChildren();
+      
+      for(int i = 0; i < overrideIdentifiers.length; i++) {
+        String propName = overrideIdentifiers[i].getChild(0).getChild(0).getNodeValue();
+        ObjectRepresentation assessedValue = assessASTNode(overrideIdentifiers[i].getChild(1), context);
+        extendsOverrides.put(propName, assessedValue);
+      }
+      
+      for(int i = 0; i < propNodes.length; i++) {
+        String typeIdentifier = propNodes[i].getChild(0).getChild(0).getNodeValue();
+        String propIdentifier = propNodes[i].getChild(1).getChild(0).getNodeValue();
+        ObjectRepresentation assessedValue = assessASTNode(propNodes[i].getChild(2), context); 
+        
+        if(RuntimeContext.getClass(className) != assessedValue.getObjectClassRepresentation()) {
+          throw new RuntimeNodeException(
+              "Type `" + typeIdentifier + "` does not match found type."
+          );
+        }
+        defProps.put(propIdentifier, assessedValue);
+      }
+      
+      for(int i = 0; i < functionNodes.length; i++) {
+        String funcName = functionNodes[i].getChild(0).getChild(0).getNodeValue();
+        ASTNode[] paramNodes = functionNodes[i].getChild(1).getChildren();
+        String returnTypeIdentifier = functionNodes[i].getChild(2).getChild(0).getNodeValue();
+        ASTNode body = functionNodes[i].getChild(3);
+        ParameterContainer params = new ParameterContainer();
+        
+        for(int j = 0; j < paramNodes.length; j++) {
+          String typeName = paramNodes[j].getChild(0).getChild(0).getNodeValue();
+          String paramName = paramNodes[j].getChild(1).getChild(0).getNodeValue();
+          params.put(paramName, RuntimeContext.getClass(typeName));
+        }
+        
+        methods.put(funcName, new FunctionRepresentation<Object>(params, body, RuntimeContext.getClass(returnTypeIdentifier), funcName));
+      }
+      
+      RuntimeContext.setClass(className, new ClassRepresentation<Object>(extendsOverrides, defProps, methods, className, extendsClass));
+      
+    }
+    
+    
+    
   }
 }
 
