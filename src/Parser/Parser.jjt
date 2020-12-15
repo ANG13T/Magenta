@@ -3,12 +3,13 @@ options {
     MULTI = true;
     NODE_PREFIX = "ASTGenerated_";
     NODE_CLASS = "ASTNode";
-    NODE_PACKAGE = "Magenta.parser.generatednodes";
+    NODE_PACKAGE = "Parser.generatednodes";
     DEBUG_PARSER = true;
 }
 
 PARSER_BEGIN(Parser)
 
+package Parser;
 
 public class Parser {
     public static void main(String[] args) {

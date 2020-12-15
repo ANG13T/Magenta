@@ -5,38 +5,48 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import Magenta.parser.generatednodes.ASTGenerated_class_declaration;
-import Magenta.parser.generatednodes.ASTGenerated_class_method;
-import Magenta.parser.generatednodes.ASTGenerated_class_property_get;
-import Magenta.parser.generatednodes.ASTGenerated_data_type;
-import Magenta.parser.generatednodes.ASTGenerated_data_type_boolean;
-import Magenta.parser.generatednodes.ASTGenerated_data_type_decimal;
-import Magenta.parser.generatednodes.ASTGenerated_data_type_integer;
-import Magenta.parser.generatednodes.ASTGenerated_data_type_string;
-import Magenta.parser.generatednodes.ASTGenerated_expression_no_parenthesis;
-import Magenta.parser.generatednodes.ASTGenerated_expression_parenthesis;
-import Magenta.parser.generatednodes.ASTGenerated_func_action;
-import Magenta.parser.generatednodes.ASTGenerated_func_call;
-import Magenta.parser.generatednodes.ASTGenerated_operator_addition;
-import Magenta.parser.generatednodes.ASTGenerated_operator_and;
-import Magenta.parser.generatednodes.ASTGenerated_operator_division;
-import Magenta.parser.generatednodes.ASTGenerated_operator_equal_to;
-import Magenta.parser.generatednodes.ASTGenerated_operator_greater_than;
-import Magenta.parser.generatednodes.ASTGenerated_operator_less_than;
-import Magenta.parser.generatednodes.ASTGenerated_operator_modulous;
-import Magenta.parser.generatednodes.ASTGenerated_operator_multiplication;
-import Magenta.parser.generatednodes.ASTGenerated_operator_or;
-import Magenta.parser.generatednodes.ASTGenerated_operator_subtraction;
-import Magenta.parser.generatednodes.ASTGenerated_statement_emit;
-import Magenta.parser.generatednodes.ASTGenerated_statement_if;
-import Magenta.parser.generatednodes.ASTGenerated_statement_pass;
-import Magenta.parser.generatednodes.ASTGenerated_statement_while;
-import Magenta.parser.generatednodes.ASTGenerated_val_no_expression;
-import Magenta.parser.generatednodes.ASTGenerated_val_no_expression_no_parenthesis;
-import Magenta.parser.generatednodes.ASTGenerated_value;
-import Magenta.parser.generatednodes.ASTGenerated_variable_assignment;
-import Magenta.parser.generatednodes.ASTGenerated_variable_declaration;
-import Magenta.parser.generatednodes.ASTNode;
+import Parser.generatednodes.ASTNode;
+import Parser.generatednodes.ASTGenerated_class_declaration;
+import Parser.generatednodes.ASTGenerated_class_instantiation;
+import Parser.generatednodes.ASTGenerated_class_method;
+import Parser.generatednodes.ASTGenerated_class_property_get;
+import Parser.generatednodes.ASTGenerated_data_type;
+import Parser.generatednodes.ASTGenerated_data_type_boolean;
+import Parser.generatednodes.ASTGenerated_data_type_decimal;
+import Parser.generatednodes.ASTGenerated_data_type_integer;
+import Parser.generatednodes.ASTGenerated_data_type_string;
+import Parser.generatednodes.ASTGenerated_expression_no_parenthesis;
+import Parser.generatednodes.ASTGenerated_expression_parenthesis;
+import Parser.generatednodes.ASTGenerated_func_action;
+import Parser.generatednodes.ASTGenerated_func_call;
+import Parser.generatednodes.ASTGenerated_func_declaration;
+import Parser.generatednodes.ASTGenerated_identifier;
+import Parser.generatednodes.ASTGenerated_operator_addition;
+import Parser.generatednodes.ASTGenerated_operator_and;
+import Parser.generatednodes.ASTGenerated_operator_division;
+import Parser.generatednodes.ASTGenerated_operator_equal_to;
+import Parser.generatednodes.ASTGenerated_operator_greater_than;
+import Parser.generatednodes.ASTGenerated_operator_greater_than_equal_to;
+import Parser.generatednodes.ASTGenerated_operator_less_than;
+import Parser.generatednodes.ASTGenerated_operator_less_than_equal_to;
+import Parser.generatednodes.ASTGenerated_operator_modulous;
+import Parser.generatednodes.ASTGenerated_operator_multiplication;
+import Parser.generatednodes.ASTGenerated_operator_not;
+import Parser.generatednodes.ASTGenerated_operator_not_equal_to;
+import Parser.generatednodes.ASTGenerated_operator_or;
+import Parser.generatednodes.ASTGenerated_operator_subtraction;
+import Parser.generatednodes.ASTGenerated_operators;
+import Parser.generatednodes.ASTGenerated_statement_emit;
+import Parser.generatednodes.ASTGenerated_statement_if;
+import Parser.generatednodes.ASTGenerated_statement_pass;
+import Parser.generatednodes.ASTGenerated_statement_while;
+import Parser.generatednodes.ASTGenerated_statements;
+import Parser.generatednodes.ASTGenerated_val_no_expression;
+import Parser.generatednodes.ASTGenerated_val_no_expression_no_parenthesis;
+import Parser.generatednodes.ASTGenerated_value;
+import Parser.generatednodes.ASTGenerated_variable_assignment;
+import Parser.generatednodes.ASTGenerated_variable_declaration;
+import Parser.generatednodes.ASTNode;
 
 public class RuntimeNode {
   public static void runRootNode(ASTNode node) {
@@ -157,7 +167,7 @@ public class RuntimeNode {
       
       DefaultPropsContainer extendsOverrides = new DefaultPropsContainer();
       DefaultPropsContainer defProps = new DefaultPropsContainer();
-      MethodContainer<ObjectRepresentation> methods = new MethodContainer<ObjectRepresentation>();
+      MethodContainer<Object> methods = new MethodContainer<Object>();
       ASTNode[] overrideIdentifiers = children[2].getChildren();
       ASTNode[] propNodes = children[3].getChildren();
       ASTNode[] functionNodes = children[4].getChildren();
@@ -201,7 +211,7 @@ public class RuntimeNode {
       
     }
     
-    if(n instanceof AST_function_declaration) {
+    if(n instanceof ASTGenerated_func_declaration) {
       String funcName = n.getChild(0).getChild(0).getNodeValue();
       ASTNode[] params = n.getChild(1).getChildren();
       String returnTypeIdentifier = n.getChild(2).getChild(0).getNodeValue();
@@ -214,7 +224,14 @@ public class RuntimeNode {
         parameters.put(typeIdentifier, RuntimeContext.getClass(typeIdentifier));
       }
       
-      RuntimeContext.setGlobalFunction(funcName, new ClassRepresentation<Object>(params, body, RuntimeContext.getClass(returnTypeIdentifier), funcName));
+      RuntimeContext.setGlobalFunction(funcName, 
+          new FunctionRepresentation<Object>(
+              parameters, 
+              body, 
+              RuntimeContext.getClass(returnTypeIdentifier), 
+              funcName
+        )
+      );
     }
   }
   
@@ -223,11 +240,11 @@ public class RuntimeNode {
       if(insideFunc) {
         ASTNode n = nodes[i];
         
-        if(n instanceof AST_Generated_inside_function_action) {
+        if(n instanceof ASTGenerated_func_action) {
           n = n.getChild(0);
         }
         
-        if(n instanceof AST_Generated_statement_call) {
+        if(n instanceof ASTGenerated_statements) {
           n = n.getChild(0);
         }
         
@@ -237,7 +254,7 @@ public class RuntimeNode {
         
       }
       
-      runASTNode(nodes[i], context, insideFunction);
+      runASTNode(nodes[i], context, insideFunc);
     }
     
     if(!insideFunc) {
@@ -250,7 +267,7 @@ public class RuntimeNode {
   
   public static ObjectRepresentation assessASTNode(ASTNode node, RuntimeContext context) {
     if(node instanceof ASTGenerated_value || node instanceof ASTGenerated_val_no_expression || node instanceof ASTGenerated_val_no_expression_no_parenthesis) {
-      if(node.getChild(0) instanceof ASTGenerated_exclamation_point) {
+      if(node.getChild(0) instanceof ASTGenerated_operator_not) {
         ObjectRepresentation assessedChildObj = assessASTNode(node.getChild(1), context);
         
         if(assessedChildObj.getObjectClassRepresentation() != RuntimeConstants.getBooleanClass()) {
@@ -301,7 +318,7 @@ public class RuntimeNode {
       return RuntimeConstants.getIntegerClass().createObject(Long.parseLong(node.getNodeValue()));
     }
     
-    if(node instanceof ASTGenerated_normal_name) {
+    if(node instanceof ASTGenerated_identifier) {
       return context.getObject(node.getChild(0).getNodeValue());
     }
     
@@ -325,7 +342,7 @@ public class RuntimeNode {
       );
     }
     
-    if(node instanceof AST_Generated_class_call) {
+    if(node instanceof ASTGenerated_class_instantiation) {
       String classIdentifier = node.getChild(0).getChild(0).getNodeValue();
       ASTNode[] vals = node.getChild(1).getChildren();
       List<ObjectRepresentation> args = new LinkedList<ObjectRepresentation>();
@@ -436,7 +453,7 @@ public class RuntimeNode {
     );
   }
   
-  public static ObjectRepresentation evaluateExpressionStep(Object term,
+  public static ObjectRepresentation evaluateExpressionStep(ObjectRepresentation term,
       ASTNode operatorNode,
       Object term2,
       RuntimeContext context) {
@@ -445,63 +462,60 @@ public class RuntimeNode {
   }
   
   private static String methodNameForBinaryOperator(ASTNode operatorNode) {
-    if (operatorNode instanceof ASTGenerated_binary_operator) {
+    if (operatorNode instanceof ASTGenerated_operators) {
         operatorNode = operatorNode.getChild(0);
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_equality) {
+    if (operatorNode instanceof ASTGenerated_operator_equal_to) {
         return "equals";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_negated_equality) {
+    if (operatorNode instanceof ASTGenerated_operator_not_equal_to) {
         return "doesNotEqual";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_plus) {
+    if (operatorNode instanceof ASTGenerated_operator_addition) {
         return "add";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_minus) {
+    if (operatorNode instanceof ASTGenerated_operator_subtraction) {
         return "subtract";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_times) {
+    if (operatorNode instanceof ASTGenerated_operator_multiplication) {
         return "multiply";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_divide) {
+    if (operatorNode instanceof ASTGenerated_operator_division) {
         return "divide";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_modulo) {
+    if (operatorNode instanceof ASTGenerated_operator_modulous) {
         return "modulo";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_exponential) {
-        return "exponent";
-    }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_and) {
+    if (operatorNode instanceof ASTGenerated_operator_and) {
         return "and";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_or) {
+    if (operatorNode instanceof ASTGenerated_operator_or) {
         return "or";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_greater_than) {
+    if (operatorNode instanceof ASTGenerated_operator_greater_than) {
         return "isGreater";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_less_than) {
+    if (operatorNode instanceof ASTGenerated_operator_less_than) {
         return "isLess";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_greater_or_equal) {
+    if (operatorNode instanceof ASTGenerated_operator_greater_than_equal_to) {
         return "isGreaterOrEqual";
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_less_or_equal) {
+    if (operatorNode instanceof ASTGenerated_operator_less_than_equal_to) {
         return "isLessOrEqual";
     }
 
@@ -509,7 +523,7 @@ public class RuntimeNode {
 }
 
 private static int precedenceForBinaryOperator(ASTNode operatorNode) {
-    if (operatorNode instanceof ASTGenerated_operator) {
+    if (operatorNode instanceof ASTGenerated_operators) {
         operatorNode = operatorNode.getChild(0);
     }
 
@@ -517,7 +531,7 @@ private static int precedenceForBinaryOperator(ASTNode operatorNode) {
         return 30;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_negated_equality) {
+    if (operatorNode instanceof ASTGenerated_operator_not_equal_to) {
         return 30;
     }
 
@@ -558,11 +572,11 @@ private static int precedenceForBinaryOperator(ASTNode operatorNode) {
         return 30;
     }
 
-    if (operatorNode instanceof ASTGenerated_operator) {
+    if (operatorNode instanceof ASTGenerated_operator_greater_than_equal_to) {
         return 30;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_less_or_equal) {
+    if (operatorNode instanceof ASTGenerated_operator_less_than_equal_to) {
         return 30;
     }
 

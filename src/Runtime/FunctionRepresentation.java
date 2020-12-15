@@ -3,7 +3,7 @@ package Runtime;
 import java.util.LinkedHashMap;
 import java.util.function.Function;
 
-import Magenta.parser.generatednodes.ASTNode;
+import Parser.generatednodes.ASTNode;
 
 public class FunctionRepresentation<B> {
   private ParameterContainer params;

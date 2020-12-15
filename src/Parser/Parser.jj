@@ -4,13 +4,14 @@
                  
                                   
                            
-                                                   
+                                           
     DEBUG_PARSER = true;
 }
 
 PARSER_BEGIN(Parser)
-import Magenta.parser.generatednodes.*;
 
+package Parser;
+import Parser.generatednodes.*;
 
 
 public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants/*@egen*/ {/*@bgen(jjtree)*/
