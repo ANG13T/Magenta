@@ -18,6 +18,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
             System.out.println("Something went wrong.");
             System.out.println("Exception: ");
             System.out.println(exception);
+            exception.printStackTrace();
         }
     }
 

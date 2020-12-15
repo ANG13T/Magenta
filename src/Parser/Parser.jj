@@ -29,6 +29,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants/*@egen*/ {/*@
             System.out.println("Something went wrong.");
             System.out.println("Exception: ");
             System.out.println(exception);
+            System.out.println(exception.printStacktrace());
         }
     }
 }
@@ -1431,7 +1432,7 @@ void operators(): {/*@bgen(jjtree) operators */
 
 SKIP: {
     " "
-|   "[COMMENT]"
+|   "(COMMENT)"
 |   "\t"
 |   "\n"
 |   "\r"
@@ -1442,45 +1443,45 @@ SKIP: {
 
 TOKEN :
 {
-  <DECIMAL: "[DECIMAL \\d+(\\.\\d{1,2})?]">
-| <INTEGER: "[INTEGER (?<=\\s|^)\\d+(?=\\s|$)]">
-| <STRING: "[STRING \"[^\"]*\"]">
-| <BOOLEAN: "[BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z])]">
-| <IDENTCAPITALIZED: "[IDENTCAPITALIZED  [A-Z][_A-Za-z]*(?=[^_A-Za-z])]">
-| <IDENTLOWERCASE: "[IDENTLOWERCASE [a-z][_A-Za-z]*(?=[^_A-Za-z])]">
-| <IDENTUNDERSCORE: "[IDENTUNDERSCORE _[_A-Za-z]*(?=[^_A-Za-z])]">
-| <OPADD: "[OPADD]">
-| <OPSUBTRACT: "[OPSUBTRACT]">
-| <OPMULTIPLY: "[OPMULTIPLY]">
-| <OPDIVIDE: "[OPDIVIDE]">
-| <OPMODULO: "[OPMODULO]">
-| <OPEQUALTO: "[OPEQUALTO]">
-| <OPNOTEQUALTO: "[OPNOTEQUALTO]">
-| <OPGREATERTHAN: "[OPGREATERTHAN]">
-| <OPLESSTHAN: "[OPLESSTHAN]">
-| <OPGREATERTHANEQUALTO: "[OPGREATERTHANEQUALTO]">
-| <OPLESSTHANEQUALTO: "[OPLESSTHANEQUALTO]">
-| <OPAND: "[OPAND]">
-| <OPOR: "[OPOR]">
-| <OPNOT: "[OPNOT]">
-| <PUNCQUESTION: "[PUNCQUESTION]">
-| <PUNCCOLON: "[PUNCCOLON]">
-| <PUNCSEMICOLON: "[PUNCSEMICOLON]">
-| <PUNCCOMMA: "[PUNCCOMMA]">
-| <PUNCPERIOD: "[PUNCPERIOD]" >
-| <PUNCEQUALSIGN: "[PUNCEQUALSIGN]">
-| <PUNCLEFTPAREN: "[PUNCLEFTPAREN]">
-| <PUNCRIGHTPAREN: "[PUNCRIGHTPAREN]">
-| <PUNCLEFTCURLY: "[PUNCLEFTCURLY]">
-| <PUNCRIGHTCURLY: "[PUNCRIGHTCURLY]">
-| <PUNCOPENARROW: "[PUNCOPENARROW]">
-| <PUNCCLOSEARROW: "[PUNCCLOSEARROW]">
-| <KEYIF: "[KEYIF]">
-| <KEYFOR: "[KEYFOR]">
-| <KEYWHILE: "[KEYWHILE]">
-| <KEYBLOCK: "[KEYBLOCK]">
-| <KEYEMIT: "[KEYEMIT]">
-| <KEYTASK: "[KEYTASK]">
-| <KEYNULL: "[KEYNULL]">
-| <KEYPASS: "[KEYPASS]">
+  <DECIMAL: "(DECIMAL " (["0"-"9"])+ "." (["0"-"9"])+ ")">
+| <INTEGER: "(INTEGER "(["0"-"9"])+ ")">
+| <STRING: "(STRING " "'" (~["'", "\\"] | ("\\" ~[]))* "')">
+| <BOOLEAN: "(BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z]))">
+| <IDENTCAPITALIZED: "(IDENTCAPITALIZED  " ["A"-"Z"] (["_", "A"-"Z", "a"-"z"])* ")">
+| <IDENTLOWERCASE: "(IDENTLOWERCASE " ["a"-"z"] (["_", "A"-"Z", "a"-"z"])* ")">
+| <IDENTUNDERSCORE: "(IDENTUNDERSCORE " "_" (["_", "A"-"Z", "a"-"z"])* ")">
+| <OPADD: "(OPADD)">
+| <OPSUBTRACT: "(OPSUBTRACT)">
+| <OPMULTIPLY: "(OPMULTIPLY)">
+| <OPDIVIDE: "(OPDIVIDE)">
+| <OPMODULO: "(OPMODULO)">
+| <OPEQUALTO: "(OPEQUALTO)">
+| <OPNOTEQUALTO: "(OPNOTEQUALTO)">
+| <OPGREATERTHAN: "(OPGREATERTHAN)">
+| <OPLESSTHAN: "(OPLESSTHAN)">
+| <OPGREATERTHANEQUALTO: "(OPGREATERTHANEQUALTO)">
+| <OPLESSTHANEQUALTO: "(OPLESSTHANEQUALTO)">
+| <OPAND: "(OPAND)">
+| <OPOR: "(OPOR)">
+| <OPNOT: "(OPNOT)">
+| <PUNCQUESTION: "(PUNCQUESTION)">
+| <PUNCCOLON: "(PUNCCOLON)">
+| <PUNCSEMICOLON: "(PUNCSEMICOLON)">
+| <PUNCCOMMA: "(PUNCCOMMA)">
+| <PUNCPERIOD: "(PUNCPERIOD)">
+| <PUNCEQUALSIGN: "(PUNCEQUALSIGN)">
+| <PUNCLEFTPAREN: "(PUNCLEFTPAREN)">
+| <PUNCRIGHTPAREN: "(PUNCRIGHTPAREN)">
+| <PUNCLEFTCURLY: "(PUNCLEFTCURLY)">
+| <PUNCRIGHTCURLY: "(PUNCRIGHTCURLY)">
+| <PUNCOPENARROW: "(PUNCOPENARROW)">
+| <PUNCCLOSEARROW: "(PUNCCLOSEARROW)">
+| <KEYIF: "(KEYIF)">
+| <KEYFOR: "(KEYFOR)">
+| <KEYWHILE: "(KEYWHILE)">
+| <KEYBLOCK: "(KEYBLOCK)">
+| <KEYEMIT: "(KEYEMIT)">
+| <KEYTASK: "(KEYTASK)">
+| <KEYNULL: "(KEYNULL)">
+| <KEYPASS: "(KEYPASS)">
 }
