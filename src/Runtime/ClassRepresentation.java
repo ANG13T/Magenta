@@ -100,7 +100,7 @@ public class ClassRepresentation<B> {
         );
       }
       
-      if(props.get(overrideKey).getObjectClassRepresentation() != overridenProps.get(overrideKey).get) {
+      if(props.get(overrideKey).getObjectClassRepresentation() != overridenProps.get(overrideKey).getObjectClassRepresentation()) {
         throw new OverrideException(
             "Expected type `"
                 + props.get(overrideKey).getObjectClassRepresentation().toString()
@@ -138,8 +138,8 @@ class OverrideException extends RuntimeException {
   }
 }
 
-class MethodContainer<B> extends LinkedHashMap<String, FunctionRepresentation<Object>> {
+class MethodContainer<B> extends LinkedHashMap<String, FunctionRepresentation<B>> {
 }
 
-class DefaultPropsContainer extends LinkedHashMap<String, ClassRepresentation> {
+class DefaultPropsContainer extends LinkedHashMap<String, ObjectRepresentation> {
 }

@@ -1,12 +1,20 @@
 package Runtime;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import Magenta.parser.generatednodes.ASTGenerated_class_declaration;
 import Magenta.parser.generatednodes.ASTGenerated_class_method;
+import Magenta.parser.generatednodes.ASTGenerated_class_property_get;
 import Magenta.parser.generatednodes.ASTGenerated_data_type;
 import Magenta.parser.generatednodes.ASTGenerated_data_type_boolean;
+import Magenta.parser.generatednodes.ASTGenerated_data_type_decimal;
+import Magenta.parser.generatednodes.ASTGenerated_data_type_integer;
+import Magenta.parser.generatednodes.ASTGenerated_data_type_string;
+import Magenta.parser.generatednodes.ASTGenerated_expression_no_parenthesis;
+import Magenta.parser.generatednodes.ASTGenerated_expression_parenthesis;
 import Magenta.parser.generatednodes.ASTGenerated_func_action;
 import Magenta.parser.generatednodes.ASTGenerated_func_call;
 import Magenta.parser.generatednodes.ASTGenerated_statement_emit;
@@ -107,7 +115,7 @@ public class RuntimeNode {
         throw new RuntimeNodeException("Expected `Boolean` type, but was not found.");
       }
       
-      while ((Boolean) assessedValue, context).getBaseValue() == true) {
+      while ((Boolean) assessedValue.getBaseVal() == true) {
         runASTNodes(n.getChild(1).getChildren(), context, insideFunc);
       }
     }
@@ -137,8 +145,8 @@ public class RuntimeNode {
         extendsClass = RuntimeContext.getClass(extendsClassName);
       }
       
-      DefaultPropertyMap extendsOverrides = new DefaultPropertyMap();
-      DefaultPropertyMap defProps = new DefaultPropertyMap();
+      DefaultPropsContainer extendsOverrides = new DefaultPropsContainer();
+      DefaultPropsContainer defProps = new DefaultPropsContainer();
       MethodContainer<ObjectRepresentation> methods = new MethodContainer<ObjectRepresentation>();
       ASTNode[] overrideIdentifiers = children[2].getChildren();
       ASTNode[] propNodes = children[3].getChildren();
@@ -263,7 +271,7 @@ public class RuntimeNode {
       }
     }
     
-    if(node instanceof AST_Generated_string) {
+    if(node instanceof ASTGenerated_data_type_string) {
       if(!node.getNodeValue().startsWith("\"")) {
         throw new RuntimeNodeException(
             "Expected string to begin with `\"`, but none was found."
@@ -279,7 +287,7 @@ public class RuntimeNode {
       return RuntimeConstants.getStringClass().createObject(node.getNodeValue().substring(1, node.getNodeValue().length() - 1));
     }
     
-    if(node instanceof AST_Generated_integer) {
+    if(node instanceof ASTGenerated_data_type_integer) {
       return RuntimeConstants.getIntegerClass().createObject(Long.parseLong(node.getNodeValue()));
     }
     
@@ -287,11 +295,11 @@ public class RuntimeNode {
       return context.getObject(node.getChild(0).getNodeValue());
     }
     
-    if(node instanceof AST_Generated_decimal) {
+    if(node instanceof ASTGenerated_data_type_decimal) {
       return RuntimeConstants.getDoubleClass().createObject(Double.parseDouble(node.getNodeValue()));
     }
     
-    if(node instanceof AST_Generated_function_call) {
+    if(node instanceof ASTGenerated_func_call) {
       String funcName = node.getChild(0).getChild(0).getNodeValue();
       ASTNode[] vals = node.getChild(1).getChildren();
       List<ObjectRepresentation> args = new LinkedList<ObjectRepresentation>();
@@ -323,7 +331,7 @@ public class RuntimeNode {
       );
     }
     
-    if(node instanceof ASTGenerated_class_method_call) {
+    if(node instanceof ASTGenerated_class_method) {
       String objIdentifier = node.getChild(0).getChild(0).getNodeValue();
       String methodName = node.getChild(1).getChild(0).getNodeValue();
       ASTNode[] vals = node.getChild(1).getChild(1).getChildren();
@@ -343,8 +351,8 @@ public class RuntimeNode {
       return context.getObject(objIdentifier).getProp(propIdentifier);
     }
     
-    if(node instanceof ASTGenerated_expression_with_parenthesis
-        || node instanceof ASTGenerated_expression_without_parenthesis) {
+    if(node instanceof ASTGenerated_expression_parenthesis
+        || node instanceof ASTGenerated_expression_no_parenthesis) {
       ASTNode[] expressChildren = node.getChildren();
       List<Object> expressChildrenRemaining = new ArrayList<Object>(Arrays.asList(expressChildren));
       int expressSteps = (expressChildren.length - 1) / 2;
@@ -403,7 +411,7 @@ public class RuntimeNode {
     if (term2 instanceof ASTNode) {
         term2Object = assessASTNode((ASTNode) term2, context);
     } else if (term2 instanceof ObjectRepresentation) {
-      `term2Object = (ObjectRepresentation) term2;
+      term2Object = (ObjectRepresentation) term2;
     } else {
         throw new RuntimeNodeException(
             "Term 1 was neither a node nor a created object."
