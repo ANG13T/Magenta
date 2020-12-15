@@ -312,20 +312,20 @@ void expression_parenthesis(): {} {
 
 //used to detect the operator tokens used (addition, subtraction, multiplication, division, modulo, and logical operaters such as &&, ||, >=, <=, ==, etc) are all included
 void operators(): { Token t; } {
-	<OPADD>
-|   <OPSUBTRACT>
-|   <OPDIVIDE>
-|   <OPMULTIPLY>
-|   <OPMODULO>
-| 	<OPEQUALTO>
-| 	<OPNOTEQUALTO>
-| 	<OPGREATERTHAN>
-| 	<OPLESSTHAN>
-| 	<OPGREATERTHANEQUALTO>
-| 	<OPLESSTHANEQUALTO>
-| 	<OPAND>
-| 	<OPOR>
-| 	<OPNOT>
+	<OPADD> #operator_addition
+|   <OPSUBTRACT> #operator_subtraction
+|   <OPDIVIDE> #operator_division
+|   <OPMULTIPLY> #operator_multiplication
+|   <OPMODULO> #operator_modulous
+| 	<OPEQUALTO> #operator_equal_to
+| 	<OPNOTEQUALTO> #operator_not_equal_to
+| 	<OPGREATERTHAN> #operator_greater_than
+| 	<OPLESSTHAN> #operator_less_than
+| 	<OPGREATERTHANEQUALTO> #operator_greater_than_equal_to
+| 	<OPLESSTHANEQUALTO> #operator_less_than_equal_to
+| 	<OPAND> #operator_and
+| 	<OPOR> #operator_or
+| 	<OPNOT> #operator_not
 }
 
 

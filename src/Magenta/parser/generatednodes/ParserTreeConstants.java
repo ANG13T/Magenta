@@ -43,6 +43,20 @@ public interface ParserTreeConstants
   public int JJTEXPRESSION_NO_PARENTHESIS = 35;
   public int JJTEXPRESSION_PARENTHESIS = 36;
   public int JJTOPERATORS = 37;
+  public int JJTOPERATOR_ADDITION = 38;
+  public int JJTOPERATOR_SUBTRACTION = 39;
+  public int JJTOPERATOR_DIVISION = 40;
+  public int JJTOPERATOR_MULTIPLICATION = 41;
+  public int JJTOPERATOR_MODULOUS = 42;
+  public int JJTOPERATOR_EQUAL_TO = 43;
+  public int JJTOPERATOR_NOT_EQUAL_TO = 44;
+  public int JJTOPERATOR_GREATER_THAN = 45;
+  public int JJTOPERATOR_LESS_THAN = 46;
+  public int JJTOPERATOR_GREATER_THAN_EQUAL_TO = 47;
+  public int JJTOPERATOR_LESS_THAN_EQUAL_TO = 48;
+  public int JJTOPERATOR_AND = 49;
+  public int JJTOPERATOR_OR = 50;
+  public int JJTOPERATOR_NOT = 51;
 
 
   public String[] jjtNodeName = {
@@ -84,6 +98,20 @@ public interface ParserTreeConstants
     "expression_no_parenthesis",
     "expression_parenthesis",
     "operators",
+    "operator_addition",
+    "operator_subtraction",
+    "operator_division",
+    "operator_multiplication",
+    "operator_modulous",
+    "operator_equal_to",
+    "operator_not_equal_to",
+    "operator_greater_than",
+    "operator_less_than",
+    "operator_greater_than_equal_to",
+    "operator_less_than_equal_to",
+    "operator_and",
+    "operator_or",
+    "operator_not",
   };
 }
-/* JavaCC - OriginalChecksum=cc2284a29bc2b86a8f7e52cc622445b2 (do not edit this line) */
+/* JavaCC - OriginalChecksum=e13563fc0b8b300611a899dbd11785b8 (do not edit this line) */

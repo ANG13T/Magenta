@@ -1222,21 +1222,203 @@ void operators(): {/*@bgen(jjtree) operators */
                     jjtree.openNodeScope(jjtn000);
 /*@egen*/ Token t; } {/*@bgen(jjtree) operators */
         try {
+/*@egen*//*@bgen(jjtree) operator_addition */
+        {
+          ASTGenerated_operator_addition jjtn001 = new ASTGenerated_operator_addition(JJTOPERATOR_ADDITION);
+          boolean jjtc001 = true;
+          jjtree.openNodeScope(jjtn001);
+        }
+        try {
 /*@egen*/
-	<OPADD>
-|   <OPSUBTRACT>
-|   <OPDIVIDE>
-|   <OPMULTIPLY>
-|   <OPMODULO>
-| 	<OPEQUALTO>
-| 	<OPNOTEQUALTO>
-| 	<OPGREATERTHAN>
-| 	<OPLESSTHAN>
-| 	<OPGREATERTHANEQUALTO>
-| 	<OPLESSTHANEQUALTO>
-| 	<OPAND>
-| 	<OPOR>
-| 	<OPNOT>/*@bgen(jjtree)*/
+	<OPADD>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc001) {
+            jjtree.closeNodeScope(jjtn001, true);
+          }
+        }
+/*@egen*/                   
+|/*@bgen(jjtree) operator_subtraction */
+    {
+      ASTGenerated_operator_subtraction jjtn002 = new ASTGenerated_operator_subtraction(JJTOPERATOR_SUBTRACTION);
+      boolean jjtc002 = true;
+      jjtree.openNodeScope(jjtn002);
+    }
+    try {
+/*@egen*/   <OPSUBTRACT>/*@bgen(jjtree)*/
+    } finally {
+      if (jjtc002) {
+        jjtree.closeNodeScope(jjtn002, true);
+      }
+    }
+/*@egen*/                      
+|/*@bgen(jjtree) operator_division */
+    {
+      ASTGenerated_operator_division jjtn003 = new ASTGenerated_operator_division(JJTOPERATOR_DIVISION);
+      boolean jjtc003 = true;
+      jjtree.openNodeScope(jjtn003);
+    }
+    try {
+/*@egen*/   <OPDIVIDE>/*@bgen(jjtree)*/
+    } finally {
+      if (jjtc003) {
+        jjtree.closeNodeScope(jjtn003, true);
+      }
+    }
+/*@egen*/                   
+|/*@bgen(jjtree) operator_multiplication */
+    {
+      ASTGenerated_operator_multiplication jjtn004 = new ASTGenerated_operator_multiplication(JJTOPERATOR_MULTIPLICATION);
+      boolean jjtc004 = true;
+      jjtree.openNodeScope(jjtn004);
+    }
+    try {
+/*@egen*/   <OPMULTIPLY>/*@bgen(jjtree)*/
+    } finally {
+      if (jjtc004) {
+        jjtree.closeNodeScope(jjtn004, true);
+      }
+    }
+/*@egen*/                         
+|/*@bgen(jjtree) operator_modulous */
+    {
+      ASTGenerated_operator_modulous jjtn005 = new ASTGenerated_operator_modulous(JJTOPERATOR_MODULOUS);
+      boolean jjtc005 = true;
+      jjtree.openNodeScope(jjtn005);
+    }
+    try {
+/*@egen*/   <OPMODULO>/*@bgen(jjtree)*/
+    } finally {
+      if (jjtc005) {
+        jjtree.closeNodeScope(jjtn005, true);
+      }
+    }
+/*@egen*/                   
+|/*@bgen(jjtree) operator_equal_to */
+        {
+          ASTGenerated_operator_equal_to jjtn006 = new ASTGenerated_operator_equal_to(JJTOPERATOR_EQUAL_TO);
+          boolean jjtc006 = true;
+          jjtree.openNodeScope(jjtn006);
+        }
+        try {
+/*@egen*/ 	<OPEQUALTO>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc006) {
+            jjtree.closeNodeScope(jjtn006, true);
+          }
+        }
+/*@egen*/                   
+|/*@bgen(jjtree) operator_not_equal_to */
+        {
+          ASTGenerated_operator_not_equal_to jjtn007 = new ASTGenerated_operator_not_equal_to(JJTOPERATOR_NOT_EQUAL_TO);
+          boolean jjtc007 = true;
+          jjtree.openNodeScope(jjtn007);
+        }
+        try {
+/*@egen*/ 	<OPNOTEQUALTO>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc007) {
+            jjtree.closeNodeScope(jjtn007, true);
+          }
+        }
+/*@egen*/                       
+|/*@bgen(jjtree) operator_greater_than */
+        {
+          ASTGenerated_operator_greater_than jjtn008 = new ASTGenerated_operator_greater_than(JJTOPERATOR_GREATER_THAN);
+          boolean jjtc008 = true;
+          jjtree.openNodeScope(jjtn008);
+        }
+        try {
+/*@egen*/ 	<OPGREATERTHAN>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc008) {
+            jjtree.closeNodeScope(jjtn008, true);
+          }
+        }
+/*@egen*/                       
+|/*@bgen(jjtree) operator_less_than */
+        {
+          ASTGenerated_operator_less_than jjtn009 = new ASTGenerated_operator_less_than(JJTOPERATOR_LESS_THAN);
+          boolean jjtc009 = true;
+          jjtree.openNodeScope(jjtn009);
+        }
+        try {
+/*@egen*/ 	<OPLESSTHAN>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc009) {
+            jjtree.closeNodeScope(jjtn009, true);
+          }
+        }
+/*@egen*/                    
+|/*@bgen(jjtree) operator_greater_than_equal_to */
+        {
+          ASTGenerated_operator_greater_than_equal_to jjtn010 = new ASTGenerated_operator_greater_than_equal_to(JJTOPERATOR_GREATER_THAN_EQUAL_TO);
+          boolean jjtc010 = true;
+          jjtree.openNodeScope(jjtn010);
+        }
+        try {
+/*@egen*/ 	<OPGREATERTHANEQUALTO>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc010) {
+            jjtree.closeNodeScope(jjtn010, true);
+          }
+        }
+/*@egen*/                                
+|/*@bgen(jjtree) operator_less_than_equal_to */
+        {
+          ASTGenerated_operator_less_than_equal_to jjtn011 = new ASTGenerated_operator_less_than_equal_to(JJTOPERATOR_LESS_THAN_EQUAL_TO);
+          boolean jjtc011 = true;
+          jjtree.openNodeScope(jjtn011);
+        }
+        try {
+/*@egen*/ 	<OPLESSTHANEQUALTO>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc011) {
+            jjtree.closeNodeScope(jjtn011, true);
+          }
+        }
+/*@egen*/                             
+|/*@bgen(jjtree) operator_and */
+        {
+          ASTGenerated_operator_and jjtn012 = new ASTGenerated_operator_and(JJTOPERATOR_AND);
+          boolean jjtc012 = true;
+          jjtree.openNodeScope(jjtn012);
+        }
+        try {
+/*@egen*/ 	<OPAND>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc012) {
+            jjtree.closeNodeScope(jjtn012, true);
+          }
+        }
+/*@egen*/              
+|/*@bgen(jjtree) operator_or */
+        {
+          ASTGenerated_operator_or jjtn013 = new ASTGenerated_operator_or(JJTOPERATOR_OR);
+          boolean jjtc013 = true;
+          jjtree.openNodeScope(jjtn013);
+        }
+        try {
+/*@egen*/ 	<OPOR>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc013) {
+            jjtree.closeNodeScope(jjtn013, true);
+          }
+        }
+/*@egen*/             
+|/*@bgen(jjtree) operator_not */
+        {
+          ASTGenerated_operator_not jjtn014 = new ASTGenerated_operator_not(JJTOPERATOR_NOT);
+          boolean jjtc014 = true;
+          jjtree.openNodeScope(jjtn014);
+        }
+        try {
+/*@egen*/ 	<OPNOT>/*@bgen(jjtree)*/
+        } finally {
+          if (jjtc014) {
+            jjtree.closeNodeScope(jjtn014, true);
+          }
+        }
+/*@egen*/              /*@bgen(jjtree)*/
         } finally {
           if (jjtc000) {
             jjtree.closeNodeScope(jjtn000, true);

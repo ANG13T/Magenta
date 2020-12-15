@@ -17,6 +17,16 @@ import Magenta.parser.generatednodes.ASTGenerated_expression_no_parenthesis;
 import Magenta.parser.generatednodes.ASTGenerated_expression_parenthesis;
 import Magenta.parser.generatednodes.ASTGenerated_func_action;
 import Magenta.parser.generatednodes.ASTGenerated_func_call;
+import Magenta.parser.generatednodes.ASTGenerated_operator_addition;
+import Magenta.parser.generatednodes.ASTGenerated_operator_and;
+import Magenta.parser.generatednodes.ASTGenerated_operator_division;
+import Magenta.parser.generatednodes.ASTGenerated_operator_equal_to;
+import Magenta.parser.generatednodes.ASTGenerated_operator_greater_than;
+import Magenta.parser.generatednodes.ASTGenerated_operator_less_than;
+import Magenta.parser.generatednodes.ASTGenerated_operator_modulous;
+import Magenta.parser.generatednodes.ASTGenerated_operator_multiplication;
+import Magenta.parser.generatednodes.ASTGenerated_operator_or;
+import Magenta.parser.generatednodes.ASTGenerated_operator_subtraction;
 import Magenta.parser.generatednodes.ASTGenerated_statement_emit;
 import Magenta.parser.generatednodes.ASTGenerated_statement_if;
 import Magenta.parser.generatednodes.ASTGenerated_statement_pass;
@@ -499,11 +509,11 @@ public class RuntimeNode {
 }
 
 private static int precedenceForBinaryOperator(ASTNode operatorNode) {
-    if (operatorNode instanceof ASTGenerated_binary_operator) {
+    if (operatorNode instanceof ASTGenerated_operator) {
         operatorNode = operatorNode.getChild(0);
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_equality) {
+    if (operatorNode instanceof ASTGenerated_operator_equal_to) {
         return 30;
     }
 
@@ -511,47 +521,44 @@ private static int precedenceForBinaryOperator(ASTNode operatorNode) {
         return 30;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_plus) {
+    if (operatorNode instanceof ASTGenerated_operator_addition) {
         return 40;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_minus) {
+    if (operatorNode instanceof ASTGenerated_operator_subtraction) {
         return 40;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_times) {
+    if (operatorNode instanceof ASTGenerated_operator_multiplication) {
         return 50;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_divide) {
+    if (operatorNode instanceof ASTGenerated_operator_division) {
         return 50;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_modulo) {
+    if (operatorNode instanceof ASTGenerated_operator_modulous) {
         return 50;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_exponential) {
-        return 60;
-    }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_and) {
+    if (operatorNode instanceof ASTGenerated_operator_and) {
         return 20;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_or) {
+    if (operatorNode instanceof ASTGenerated_operator_or) {
         return 10;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_greater_than) {
+    if (operatorNode instanceof ASTGenerated_operator_greater_than) {
         return 30;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_less_than) {
+    if (operatorNode instanceof ASTGenerated_operator_less_than) {
         return 30;
     }
 
-    if (operatorNode instanceof ASTGenerated_binary_operator_greater_or_equal) {
+    if (operatorNode instanceof ASTGenerated_operator) {
         return 30;
     }
 
