@@ -23,7 +23,7 @@ public class Parser {
             System.out.println("Something went wrong.");
             System.out.println("Exception: ");
             System.out.println(exception);
-            System.out.println(exception.printStacktrace());
+            exception.printStackTrace();
         }
     }
 }
@@ -348,9 +348,6 @@ TOKEN :
 | <INTEGER: "(INTEGER "(["0"-"9"])+ ")">
 | <STRING: "(STRING " "'" (~["'", "\\"] | ("\\" ~[]))* "')">
 | <BOOLEAN: "(BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z]))">
-| <IDENTCAPITALIZED: "(IDENTCAPITALIZED  " ["A"-"Z"] (["_", "A"-"Z", "a"-"z"])* ")">
-| <IDENTLOWERCASE: "(IDENTLOWERCASE " ["a"-"z"] (["_", "A"-"Z", "a"-"z"])* ")">
-| <IDENTUNDERSCORE: "(IDENTUNDERSCORE " "_" (["_", "A"-"Z", "a"-"z"])* ")">
 | <OPADD: "(OPADD)">
 | <OPSUBTRACT: "(OPSUBTRACT)">
 | <OPMULTIPLY: "(OPMULTIPLY)">
@@ -385,4 +382,7 @@ TOKEN :
 | <KEYTASK: "(KEYTASK)">
 | <KEYNULL: "(KEYNULL)">
 | <KEYPASS: "(KEYPASS)">
+| <IDENTCAPITALIZED: "(IDENTCAPITALIZED " ["A"-"Z"] (["_", "A"-"Z", "a"-"z"])* ")">
+| <IDENTLOWERCASE: "(IDENTLOWERCASE " ["a"-"z"] (["_", "A"-"Z", "a"-"z"])* ")">
+| <IDENTUNDERSCORE: "(IDENTUNDERSCORE " "_" (["_", "A"-"Z", "a"-"z"])* ")">
 }

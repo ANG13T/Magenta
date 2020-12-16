@@ -33,13 +33,13 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
         label_1:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case IDENTCAPITALIZED:
           case KEYIF:
           case KEYWHILE:
           case KEYBLOCK:
           case KEYEMIT:
           case KEYTASK:
           case KEYPASS:
+          case IDENTCAPITALIZED:
             ;
             break;
           default:
@@ -52,12 +52,12 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
             func_declaration();
           } else {
             switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-            case IDENTCAPITALIZED:
             case KEYIF:
             case KEYWHILE:
             case KEYEMIT:
             case KEYTASK:
             case KEYPASS:
+            case IDENTCAPITALIZED:
               func_action();
               break;
             default:
@@ -2130,7 +2130,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_22() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_22()) return true;
     return false;
   }
@@ -2148,7 +2148,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_23() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_17()) return true;
     return false;
   }
@@ -2162,7 +2162,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_21() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_22()) return true;
     return false;
   }
@@ -2170,7 +2170,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_19() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_16()) return true;
     return false;
   }
@@ -2191,7 +2191,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_20() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_17()) return true;
     return false;
   }
@@ -2219,7 +2219,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_18() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_22()) return true;
     return false;
   }
@@ -2232,7 +2232,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_16() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_20()) return true;
     return false;
   }
@@ -2264,7 +2264,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_13() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_17()) return true;
     return false;
   }
@@ -2305,7 +2305,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   private boolean jj_3_12() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(26)) jj_scanpos = xsp;
+    if (jj_scan_token(23)) jj_scanpos = xsp;
     if (jj_3R_16()) return true;
     return false;
   }
@@ -2502,10 +2502,10 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x400,0x400,0x20000000,0x0,0x0,0x1800,0x0,0x3c0,0x4000000,0x4000000,0x4000000,0x4000000,0x4000000,0x4000000,0x4000000,0x4000000,0x4000000,0x7ffe000,};
+      jj_la1_0 = new int[] {0x0,0x0,0x4000000,0x0,0x0,0x0,0x0,0x3c0,0x800000,0x800000,0x800000,0x800000,0x800000,0x800000,0x800000,0x800000,0x800000,0xfffc00,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x5e80,0x5a80,0x0,0x5a80,0x1000,0x0,0x4a80,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_1 = new int[] {0x1bd0,0x1b50,0x0,0xb50,0x200,0x6000,0x950,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
   final private JJCalls[] jj_2_rtns = new JJCalls[25];
   private boolean jj_rescan = false;

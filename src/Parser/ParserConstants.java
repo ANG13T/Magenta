@@ -19,79 +19,79 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int BOOLEAN = 9;
   /** RegularExpression Id. */
-  int IDENTCAPITALIZED = 10;
+  int OPADD = 10;
   /** RegularExpression Id. */
-  int IDENTLOWERCASE = 11;
+  int OPSUBTRACT = 11;
   /** RegularExpression Id. */
-  int IDENTUNDERSCORE = 12;
+  int OPMULTIPLY = 12;
   /** RegularExpression Id. */
-  int OPADD = 13;
+  int OPDIVIDE = 13;
   /** RegularExpression Id. */
-  int OPSUBTRACT = 14;
+  int OPMODULO = 14;
   /** RegularExpression Id. */
-  int OPMULTIPLY = 15;
+  int OPEQUALTO = 15;
   /** RegularExpression Id. */
-  int OPDIVIDE = 16;
+  int OPNOTEQUALTO = 16;
   /** RegularExpression Id. */
-  int OPMODULO = 17;
+  int OPGREATERTHAN = 17;
   /** RegularExpression Id. */
-  int OPEQUALTO = 18;
+  int OPLESSTHAN = 18;
   /** RegularExpression Id. */
-  int OPNOTEQUALTO = 19;
+  int OPGREATERTHANEQUALTO = 19;
   /** RegularExpression Id. */
-  int OPGREATERTHAN = 20;
+  int OPLESSTHANEQUALTO = 20;
   /** RegularExpression Id. */
-  int OPLESSTHAN = 21;
+  int OPAND = 21;
   /** RegularExpression Id. */
-  int OPGREATERTHANEQUALTO = 22;
+  int OPOR = 22;
   /** RegularExpression Id. */
-  int OPLESSTHANEQUALTO = 23;
+  int OPNOT = 23;
   /** RegularExpression Id. */
-  int OPAND = 24;
+  int PUNCQUESTION = 24;
   /** RegularExpression Id. */
-  int OPOR = 25;
+  int PUNCCOLON = 25;
   /** RegularExpression Id. */
-  int OPNOT = 26;
+  int PUNCSEMICOLON = 26;
   /** RegularExpression Id. */
-  int PUNCQUESTION = 27;
+  int PUNCCOMMA = 27;
   /** RegularExpression Id. */
-  int PUNCCOLON = 28;
+  int PUNCPERIOD = 28;
   /** RegularExpression Id. */
-  int PUNCSEMICOLON = 29;
+  int PUNCEQUALSIGN = 29;
   /** RegularExpression Id. */
-  int PUNCCOMMA = 30;
+  int PUNCLEFTPAREN = 30;
   /** RegularExpression Id. */
-  int PUNCPERIOD = 31;
+  int PUNCRIGHTPAREN = 31;
   /** RegularExpression Id. */
-  int PUNCEQUALSIGN = 32;
+  int PUNCLEFTCURLY = 32;
   /** RegularExpression Id. */
-  int PUNCLEFTPAREN = 33;
+  int PUNCRIGHTCURLY = 33;
   /** RegularExpression Id. */
-  int PUNCRIGHTPAREN = 34;
+  int PUNCOPENARROW = 34;
   /** RegularExpression Id. */
-  int PUNCLEFTCURLY = 35;
+  int PUNCCLOSEARROW = 35;
   /** RegularExpression Id. */
-  int PUNCRIGHTCURLY = 36;
+  int KEYIF = 36;
   /** RegularExpression Id. */
-  int PUNCOPENARROW = 37;
+  int KEYFOR = 37;
   /** RegularExpression Id. */
-  int PUNCCLOSEARROW = 38;
+  int KEYWHILE = 38;
   /** RegularExpression Id. */
-  int KEYIF = 39;
+  int KEYBLOCK = 39;
   /** RegularExpression Id. */
-  int KEYFOR = 40;
+  int KEYEMIT = 40;
   /** RegularExpression Id. */
-  int KEYWHILE = 41;
+  int KEYTASK = 41;
   /** RegularExpression Id. */
-  int KEYBLOCK = 42;
+  int KEYNULL = 42;
   /** RegularExpression Id. */
-  int KEYEMIT = 43;
+  int KEYPASS = 43;
   /** RegularExpression Id. */
-  int KEYTASK = 44;
+  int IDENTCAPITALIZED = 44;
   /** RegularExpression Id. */
-  int KEYNULL = 45;
+  int IDENTLOWERCASE = 45;
   /** RegularExpression Id. */
-  int KEYPASS = 46;
+  int IDENTUNDERSCORE = 46;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -108,9 +108,6 @@ public interface ParserConstants {
     "<INTEGER>",
     "<STRING>",
     "\"(BOOLEAN true(?=[^_A-Za-z])|false(?=[^_A-Za-z]))\"",
-    "<IDENTCAPITALIZED>",
-    "<IDENTLOWERCASE>",
-    "<IDENTUNDERSCORE>",
     "\"(OPADD)\"",
     "\"(OPSUBTRACT)\"",
     "\"(OPMULTIPLY)\"",
@@ -145,6 +142,9 @@ public interface ParserConstants {
     "\"(KEYTASK)\"",
     "\"(KEYNULL)\"",
     "\"(KEYPASS)\"",
+    "<IDENTCAPITALIZED>",
+    "<IDENTLOWERCASE>",
+    "<IDENTUNDERSCORE>",
   };
 
 }
