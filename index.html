@@ -55,26 +55,52 @@
 
         <h3 class="features">Features</h3>
         <pre class='prettyprint'>
-    code,
-    .code,
-    pre {
-        font-family: 'Source Code Pro';
-        background: $char;
-        color: $lightGray;
-        font-size: 16px;
-        padding: 0;
-        padding: 10px;
-        &:before {
-        display: block;
-        width: calc(100% + 10px);
-        margin-top: -10px;
-        margin-left: -10px;
-        padding: 5px;
-        text-transform: uppercase;
-        content: attr(data-lang);
-        background: $medBlue;
-        }
-    }
+~~ Classic Beer Song
+task beerSong() ->  
+    String bottles;
+    Integer i = 99;
+    while [i >= 1] ->
+
+        if [i == 1] ->
+        bottles = "bottle";
+        <-
+        
+        if [i > 1] ->
+        bottles = "bottles";
+        <-
+
+        emit(i + " " + bottles + " of beer on the wall,");
+        emit(i + " " + bottles + " of beer,");
+        emit("Take one down, pass it around,");
+
+        i = i - 1;
+        emit(bottles + " bottles of beer on the wall!");
+    <-
+<-
+        </pre>
+
+        <pre class='prettyprint'>
+task beerSong() ->  
+    String bottles;
+    Integer i = 99;
+    while [i >= 1] ->
+
+        if [i == 1] ->
+        bottles = "bottle";
+        <-
+        
+        if [i > 1] ->
+        bottles = "bottles";
+        <-
+
+        emit(i + " " + bottles + " of beer on the wall,");
+        emit(i + " " + bottles + " of beer,");
+        emit("Take one down, pass it around,");
+
+        i = i - 1;
+        emit(bottles + " bottles of beer on the wall!");
+    <-
+<-
         </pre>
     </div>
 
