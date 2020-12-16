@@ -11,6 +11,9 @@ public class TokenObj {
 
   @Override
   public String toString() {
+    if(data == null) {
+      return String.format("(%s)", type.name());
+    }
     return String.format("(%s %s)", type.name(), data);
   }
 }

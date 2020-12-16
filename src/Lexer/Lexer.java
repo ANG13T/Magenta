@@ -44,7 +44,11 @@ public class Lexer {
           Matcher m = p.matcher(token);
           
           if(m.find()) {
-            String val = m.group();
+            String val = null;
+            
+            if(set[j].getIncludeValue()) {
+              val = m.group();
+            }
             
             TokenObj newToken = new TokenObj(set[j], val);
             tokens.add(newToken);

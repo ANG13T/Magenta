@@ -1,0 +1,3 @@
+Integer number = 5;
+Integer number2 = 6;
+emit number + number2;

@@ -1433,6 +1433,7 @@ void operators(): {/*@bgen(jjtree) operators */
 SKIP: {
     " "
 |   "(COMMENT)"
+|   "(WHITESPACE)"
 |   "\t"
 |   "\n"
 |   "\r"

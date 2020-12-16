@@ -8,15 +8,15 @@ public enum TokenObjSet {
   // Token types cannot have underscores
   
   //basic data types
-  DECIMAL("\\d+(\\.\\d{1,2})?", false),
-  INTEGER("(?<=\\s|^)\\d+(?=\\s|$)", false),
-  STRING("\"[^\"]*\"", false),
-  BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", false),
+  DECIMAL("\\d+(\\.\\d{1,2})?", true),
+  INTEGER("(?<=\\s|^)\\d+(?=\\s|$)", true),
+  STRING("\"[^\"]*\"", true),
+  BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", true),
   
   //identifiers
-  IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])", false),
-  IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])", false),
-  IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])", false),
+  IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])", true),
+  IDENTLOWERCASE("[a-z][_A-Za-z]*(?=[^_A-Za-z])", true),
+  IDENTUNDERSCORE("_[_A-Za-z]*(?=[^_A-Za-z])", true),
   
   //punctuators
   PUNCQUESTION("[?]", false),

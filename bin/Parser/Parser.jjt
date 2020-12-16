@@ -334,6 +334,7 @@ void operators(): { Token t; } {
 SKIP: {
     " "
 |   "(COMMENT)"
+|   "(WHITESPACE)"
 |   "\t"
 |   "\n"
 |   "\r"
