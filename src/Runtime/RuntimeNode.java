@@ -119,7 +119,7 @@ public class RuntimeNode {
       }
       
       System.out.println(
-          assessedValue.runMethod("getString", new ObjectRepresentation[] {}).getBaseVal()
+          assessedValue.runMethod("toString", new ObjectRepresentation[] {}).getBaseVal()
       );
       return;
     }

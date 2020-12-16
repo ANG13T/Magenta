@@ -1,3 +1,7 @@
-Integer number = 5;
-Integer number2 = 6;
-emit number + number2;
+task calculate() Integer ->
+	Integer num = 5;
+	Integer number = 6;
+	Integer sum = number + number2;
+	emit sum;
+	emit "hello";
+<-

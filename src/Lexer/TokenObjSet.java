@@ -8,10 +8,21 @@ public enum TokenObjSet {
   // Token types cannot have underscores
   
   //basic data types
-  DECIMAL("\\d+(\\.\\d{1,2})?", true),
-  INTEGER("(?<=\\s|^)\\d+(?=\\s|$)", true),
+  DECIMAL("([0-9]+\\.[0-9]+)(?=[^0-9\\.])", true),
+  INTEGER("([0-9]+)(?=[^0-9\\.])", true),
   STRING("\"[^\"]*\"", true),
   BOOLEAN("true(?=[^_A-Za-z])|false(?=[^_A-Za-z])", true),
+  
+  //keywords
+  KEYIF("if(?=[^_A-Za-z])", false),
+  KEYFOR("for(?=[^_A-Za-z])", false),
+  KEYWHILE("while(?=[^_A-Za-z])", false),
+  KEYBLOCK("block(?=[^_A-Za-z])", false),
+  KEYEMIT("emit(?=[^_A-Za-z])", false),
+  KEYTASK("task(?=[^_A-Za-z])", false),
+  KEYNULL("null(?=[^_A-Za-z])", false),
+  KEYPASS("pass(?=[^_A-Za-z])", false),
+  KEYSET("set(?=[^_A-Za-z])", false),
   
   //identifiers
   IDENTCAPITALIZED("[A-Z][_A-Za-z]*(?=[^_A-Za-z])", true),
@@ -49,19 +60,6 @@ public enum TokenObjSet {
   OPOR("\\|\\|", false),
   OPNOT("!", false),
   
-  
-  //keywords
-  KEYIF("if(?=[^_A-Za-z])", false),
-  KEYFOR("for(?=[^_A-Za-z])", false),
-  KEYWHILE("while(?=[^_A-Za-z])", false),
-  KEYBLOCK("block(?=[^_A-Za-z])", false),
-  KEYEMIT("emit(?=[^_A-Za-z])", false),
-  KEYTASK("task(?=[^_A-Za-z])", false),
-  KEYNULL("null(?=[^_A-Za-z])", false),
-  KEYPASS("pass(?=[^_A-Za-z])", false),
-  KEYSET("set(?=[^_A-Za-z])", false),
- 
-  WHITESPACE("[ \t\f\r\n]+", false), 
   COMMENT("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", false);
  
   

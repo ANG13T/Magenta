@@ -10,6 +10,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
   protected JJTParserState jjtree = new JJTParserState();public static void main(String[] args) {
 
         try {
+                System.out.println("Reading file: " + args[0]);
             Parser parser = new Parser(new FileInputStream(args[0]));
             parser.parse();
             ((ASTNode) parser.jjtree.rootNode()).dump("   ");

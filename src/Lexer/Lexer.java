@@ -16,7 +16,7 @@ public class Lexer {
   public static void main(String[] args) {
     
     try {
-        File file = new File("src/tests/lexerText2.txt"); 
+        File file = new File("src/tests/lexerTest3.txt"); 
         Scanner sc = new Scanner(file); 
         String tokensString = "";
         while (sc.hasNextLine()) {
