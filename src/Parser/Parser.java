@@ -222,7 +222,7 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants, ParserConsta
         jj_consume_token(PUNCRIGHTPAREN);
         type();
         jj_consume_token(PUNCOPENARROW);
-        func_action();
+        func_actions();
         jj_consume_token(PUNCCLOSEARROW);
       } catch (Throwable jjte000) {
           if (jjtc000) {

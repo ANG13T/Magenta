@@ -60,7 +60,7 @@ void func_action(): {} {
 |  	LOOKAHEAD(2)
 	class_method() <PUNCSEMICOLON>
 |   func_call() <PUNCSEMICOLON>
-|   statements() (<PUNCSEMICOLON>)
+|   statements() <PUNCSEMICOLON>
 }
 
 
@@ -78,7 +78,7 @@ void func_declaration(): {} {
 	<PUNCRIGHTPAREN>
 	 type()
 	<PUNCOPENARROW>
-    func_action()
+    func_actions()
     <PUNCCLOSEARROW>
 }
 

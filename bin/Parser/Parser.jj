@@ -98,7 +98,7 @@ void func_action(): {/*@bgen(jjtree) func_action */
 |  	LOOKAHEAD(2)
 	class_method() <PUNCSEMICOLON>
 |   func_call() <PUNCSEMICOLON>
-|   statements() (<PUNCSEMICOLON>)/*@bgen(jjtree)*/
+|   statements() <PUNCSEMICOLON>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -168,7 +168,7 @@ void func_declaration(): {/*@bgen(jjtree) func_declaration */
 	<PUNCRIGHTPAREN>
 	 type()
 	<PUNCOPENARROW>
-    func_action()
+    func_actions()
     <PUNCCLOSEARROW>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
