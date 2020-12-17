@@ -221,7 +221,7 @@ public class RuntimeNode {
       for(int j = 0; j < params.length; j++) {
         String typeIdentifier = params[j].getChild(0).getChild(0).getNodeValue();
         String paramIdentifier = params[j].getChild(1).getChild(0).getNodeValue();
-        parameters.put(typeIdentifier, RuntimeContext.getClass(typeIdentifier));
+        parameters.put(paramIdentifier, RuntimeContext.getClass(typeIdentifier));
       }
       
       RuntimeContext.setGlobalFunction(funcName, 
@@ -471,23 +471,23 @@ public class RuntimeNode {
     }
 
     if (operatorNode instanceof ASTGenerated_operator_not_equal_to) {
-        return "doesNotEqual";
+        return "notEqual";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_addition) {
-        return "add";
+        return "addition";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_subtraction) {
-        return "subtract";
+        return "subtraction";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_multiplication) {
-        return "multiply";
+        return "multiplication";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_division) {
-        return "divide";
+        return "division";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_modulous) {
@@ -496,27 +496,27 @@ public class RuntimeNode {
 
 
     if (operatorNode instanceof ASTGenerated_operator_and) {
-        return "and";
+        return "andStatement";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_or) {
-        return "or";
+        return "orStatement";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_greater_than) {
-        return "isGreater";
+        return "greaterThan";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_less_than) {
-        return "isLess";
+        return "lessThan";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_greater_than_equal_to) {
-        return "isGreaterOrEqual";
+        return "greaterThanEqual";
     }
 
     if (operatorNode instanceof ASTGenerated_operator_less_than_equal_to) {
-        return "isLessOrEqual";
+        return "lessThanEqual";
     }
 
     throw new RuntimeNodeException("Binary operator found is unsupported.");

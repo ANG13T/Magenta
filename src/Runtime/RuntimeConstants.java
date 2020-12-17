@@ -404,7 +404,7 @@ public class RuntimeConstants {
 class BooleanFunctionRepresentation extends FunctionRepresentation<Boolean>{
 
   public BooleanFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
-    super(params, func, returnRep, "");
+    super(params, func, returnRep, "Boolean");
   }
   
 }
@@ -412,7 +412,7 @@ class BooleanFunctionRepresentation extends FunctionRepresentation<Boolean>{
 class StringFunctionRepresentation extends FunctionRepresentation<String>{
 
   public StringFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
-    super(params, func, returnRep, "");
+    super(params, func, returnRep, "String");
   }
   
 }
@@ -420,7 +420,7 @@ class StringFunctionRepresentation extends FunctionRepresentation<String>{
 class DecimalFunctionRepresentation extends FunctionRepresentation<Double>{
 
   public DecimalFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
-    super(params, func, returnRep, "");
+    super(params, func, returnRep, "Decimal");
   }
   
 }
@@ -429,7 +429,7 @@ class DecimalFunctionRepresentation extends FunctionRepresentation<Double>{
 class IntegerFunctionRepresentation extends FunctionRepresentation<Long>{
 
   public IntegerFunctionRepresentation(ParameterContainer params, RuntimeFunction func, ClassRepresentation returnRep) {
-    super(params, func, returnRep, "");
+    super(params, func, returnRep, "Integer");
   }
   
 }

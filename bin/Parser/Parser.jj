@@ -19,18 +19,30 @@ public class Parser/*@bgen(jjtree)*/implements ParserTreeConstants/*@egen*/ {/*@
 
 /*@egen*/
     public static void main(String[] args) {
-
+		Parser parser = null;
+		
+		//Step 1: read file data from input
         try {
           	System.out.println("Reading file: " + args[0]);
-            Parser parser = new Parser(new FileInputStream(args[0]));
-            parser.parse();
+            parser = new Parser(new FileInputStream(args[0]));
+        } catch (Exception exception) {
+            System.out.println("Something went wrong with reading file data.");
+            System.out.println("Exception: ");
+            System.out.println(exception);
+            System.exit(0);
+        }
+
+		//Step 2: run the parser code
+        try {
+			parser.parse();
             ((ASTNode) parser.jjtree.rootNode()).dump("   ");
             RuntimeNode.runRootNode((ASTNode) parser.jjtree.rootNode());
-        } catch (Exception exception) {
+         }catch (Exception exception) {
             System.out.println("Something went wrong.");
             System.out.println("Exception: ");
             System.out.println(exception);
             exception.printStackTrace();
+            System.exit(0);
         }
     }
 }
@@ -81,12 +93,12 @@ void func_action(): {/*@bgen(jjtree) func_action */
 /*@egen*/
 	LOOKAHEAD(2)
 	variable_declaration()
-	LOOKAHEAD(2)
+|  	LOOKAHEAD(2)
 	variable_assignment()
-	LOOKAHEAD(2)
+|  	LOOKAHEAD(2)
 	class_method() <PUNCSEMICOLON>
 |   func_call() <PUNCSEMICOLON>
-|   (statements() (<PUNCSEMICOLON>)?)/*@bgen(jjtree)*/
+|   statements() (<PUNCSEMICOLON>)/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -154,7 +166,7 @@ void func_declaration(): {/*@bgen(jjtree) func_declaration */
 	<PUNCLEFTPAREN>
 	params()
 	<PUNCRIGHTPAREN>
-	type()
+	 type()
 	<PUNCOPENARROW>
     func_action()
     <PUNCCLOSEARROW>/*@bgen(jjtree)*/
@@ -410,7 +422,7 @@ void func_call(): {/*@bgen(jjtree) func_call */
 /*@egen*/} {/*@bgen(jjtree) func_call */
         try {
 /*@egen*/
-	<KEYTASK> identifier() <PUNCLEFTPAREN> values() <PUNCRIGHTPAREN>/*@bgen(jjtree)*/
+	identifier() <PUNCLEFTPAREN> values() <PUNCRIGHTPAREN>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -678,7 +690,6 @@ void type(): {/*@bgen(jjtree) type */
 /*@egen*/} {/*@bgen(jjtree) type */
         try {
 /*@egen*/
-	LOOKAHEAD(2)
 	type_name()/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {

@@ -13,18 +13,30 @@ package Parser;
 
 public class Parser {
     public static void main(String[] args) {
-
+		Parser parser = null;
+		
+		//Step 1: read file data from input
         try {
           	System.out.println("Reading file: " + args[0]);
-            Parser parser = new Parser(new FileInputStream(args[0]));
-            parser.parse();
+            parser = new Parser(new FileInputStream(args[0]));
+        } catch (Exception exception) {
+            System.out.println("Something went wrong with reading file data.");
+            System.out.println("Exception: ");
+            System.out.println(exception);
+            System.exit(0);
+        }
+
+		//Step 2: run the parser code
+        try {
+			parser.parse();
             ((ASTNode) parser.jjtree.rootNode()).dump("   ");
             RuntimeNode.runRootNode((ASTNode) parser.jjtree.rootNode());
-        } catch (Exception exception) {
+         }catch (Exception exception) {
             System.out.println("Something went wrong.");
             System.out.println("Exception: ");
             System.out.println(exception);
             exception.printStackTrace();
+            System.exit(0);
         }
     }
 }
@@ -43,12 +55,12 @@ void parse(): {} {
 void func_action(): {} {
 	LOOKAHEAD(2)
 	variable_declaration()
-	LOOKAHEAD(2)
+|  	LOOKAHEAD(2)
 	variable_assignment()
-	LOOKAHEAD(2)
+|  	LOOKAHEAD(2)
 	class_method() <PUNCSEMICOLON>
 |   func_call() <PUNCSEMICOLON>
-|   (statements() (<PUNCSEMICOLON>)?)
+|   statements() (<PUNCSEMICOLON>)
 }
 
 
@@ -64,7 +76,7 @@ void func_declaration(): {} {
 	<PUNCLEFTPAREN>
 	params()
 	<PUNCRIGHTPAREN>
-	type()
+	 type()
 	<PUNCOPENARROW>
     func_action()
     <PUNCCLOSEARROW>
@@ -112,7 +124,7 @@ void class_property_get(): {} {
 
 //calling a function
 void func_call(): {} {
-	<KEYTASK> identifier() <PUNCLEFTPAREN> values() <PUNCRIGHTPAREN>
+	identifier() <PUNCLEFTPAREN> values() <PUNCRIGHTPAREN>
 } 
 
 //assign a variable
@@ -173,7 +185,6 @@ void type_name(): { Token t; } {
 }
 
 void type(): {} {
-	LOOKAHEAD(2)
 	type_name()
 }
 
