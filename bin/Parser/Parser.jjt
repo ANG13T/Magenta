@@ -76,6 +76,7 @@ void func_declaration(): {} {
 	<PUNCLEFTPAREN>
 	params()
 	<PUNCRIGHTPAREN>
+	<PUNCCOLON>
 	 type()
 	<PUNCOPENARROW>
     func_actions()
@@ -99,6 +100,7 @@ void func_declartions(): {} {
 
 void class_declaration(): {} {
   	<KEYBLOCK>
+  	<PUNCCOLON>
 	type_name()
     <PUNCOPENARROW>
     variable_assignments()
@@ -198,23 +200,23 @@ void statements(): {} {
 }
 
 void statement_pass(): {} {
-	<KEYPASS> value()
+	<KEYPASS><PUNCLEFTPAREN> value()<PUNCRIGHTPAREN>
 }
 
 void statement_if(): {} {
-	<KEYIF> value() <PUNCOPENARROW>
+	<KEYIF><PUNCLEFTBLOCK> value() <PUNCRIGHTBLOCK><PUNCOPENARROW>
 
 	<PUNCCLOSEARROW>
 }
 
 void statement_while(): {} {
-	<KEYWHILE> value() <PUNCOPENARROW>
+	<KEYWHILE><PUNCLEFTBLOCK> value() <PUNCRIGHTBLOCK><PUNCOPENARROW>
 
 	<PUNCCLOSEARROW>
 }
 
 void statement_emit(): {} {
-	<KEYEMIT> value()
+	<KEYEMIT><PUNCLEFTPAREN> value() <PUNCRIGHTPAREN>
 }
 
 //basic data types of the programming language (decimal, integers, strings, and booleans)
@@ -383,6 +385,8 @@ TOKEN :
 | <PUNCEQUALSIGN: "(PUNCEQUALSIGN)">
 | <PUNCLEFTPAREN: "(PUNCLEFTPAREN)">
 | <PUNCRIGHTPAREN: "(PUNCRIGHTPAREN)">
+| <PUNCLEFTBLOCK: "(PUNCLEFTBLOCK)">
+| <PUNCRIGHTBLOCK: "(PUNCRIGHTBLOCK)">
 | <PUNCLEFTCURLY: "(PUNCLEFTCURLY)">
 | <PUNCRIGHTCURLY: "(PUNCRIGHTCURLY)">
 | <PUNCOPENARROW: "(PUNCOPENARROW)">

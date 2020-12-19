@@ -1,5 +1,5 @@
-task calculate() Integer ->
+task calculate(): Integer ->
 	Integer num = 5;
-	emit num;
-	pass sum;
+	emit(num);
+	pass(sum);
 <-

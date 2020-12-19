@@ -166,6 +166,7 @@ void func_declaration(): {/*@bgen(jjtree) func_declaration */
 	<PUNCLEFTPAREN>
 	params()
 	<PUNCRIGHTPAREN>
+	<PUNCCOLON>
 	 type()
 	<PUNCOPENARROW>
     func_actions()
@@ -293,6 +294,7 @@ void class_declaration(): {/*@bgen(jjtree) class_declaration */
         try {
 /*@egen*/
   	<KEYBLOCK>
+  	<PUNCCOLON>
 	type_name()
     <PUNCOPENARROW>
     variable_assignments()
@@ -755,7 +757,7 @@ void statement_pass(): {/*@bgen(jjtree) statement_pass */
 /*@egen*/} {/*@bgen(jjtree) statement_pass */
         try {
 /*@egen*/
-	<KEYPASS> value()/*@bgen(jjtree)*/
+	<KEYPASS><PUNCLEFTPAREN> value()<PUNCRIGHTPAREN>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -785,7 +787,7 @@ void statement_if(): {/*@bgen(jjtree) statement_if */
 /*@egen*/} {/*@bgen(jjtree) statement_if */
         try {
 /*@egen*/
-	<KEYIF> value() <PUNCOPENARROW>
+	<KEYIF><PUNCLEFTBLOCK> value() <PUNCRIGHTBLOCK><PUNCOPENARROW>
 
 	<PUNCCLOSEARROW>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
@@ -817,7 +819,7 @@ void statement_while(): {/*@bgen(jjtree) statement_while */
 /*@egen*/} {/*@bgen(jjtree) statement_while */
         try {
 /*@egen*/
-	<KEYWHILE> value() <PUNCOPENARROW>
+	<KEYWHILE><PUNCLEFTBLOCK> value() <PUNCRIGHTBLOCK><PUNCOPENARROW>
 
 	<PUNCCLOSEARROW>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
@@ -849,7 +851,7 @@ void statement_emit(): {/*@bgen(jjtree) statement_emit */
 /*@egen*/} {/*@bgen(jjtree) statement_emit */
         try {
 /*@egen*/
-	<KEYEMIT> value()/*@bgen(jjtree)*/
+	<KEYEMIT><PUNCLEFTPAREN> value() <PUNCRIGHTPAREN>/*@bgen(jjtree)*/
         } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -1482,6 +1484,8 @@ TOKEN :
 | <PUNCEQUALSIGN: "(PUNCEQUALSIGN)">
 | <PUNCLEFTPAREN: "(PUNCLEFTPAREN)">
 | <PUNCRIGHTPAREN: "(PUNCRIGHTPAREN)">
+| <PUNCLEFTBLOCK: "(PUNCLEFTBLOCK)">
+| <PUNCRIGHTBLOCK: "(PUNCRIGHTBLOCK)">
 | <PUNCLEFTCURLY: "(PUNCLEFTCURLY)">
 | <PUNCRIGHTCURLY: "(PUNCRIGHTCURLY)">
 | <PUNCOPENARROW: "(PUNCOPENARROW)">
