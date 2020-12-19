@@ -30,6 +30,16 @@ task beerSong: Vacant() ->
 
 ## Installation / Running Magenta
 
+### Installing: 
+```
+git clone https://github.com/angelina-tsuboi/Magenta.git
+```
+### Running a Magenta File: 
+```
+cd Magenta/src
+./rm-gen.sh && ./run.sh FILE_NAME.mgnta
+```
+
 ## Features
 
 ### Class Structure
@@ -55,17 +65,21 @@ task getSum: Integer(Integer one, Integer two) ->
 - Boolean
 ```
 Boolean bool = true;
+Boolean bool2 = false;
 ```
 - Integer
 ```
 Integer int = 2;
+Integer age = 14;
 ```
 - Decimal
 ```
+Decimal dec = 289.3;
 Decimal pi = 3.141592;
 ```
 - String
 ```
+String alphabet = "abcdef";
 String intro = "Hello World";
 ```
 - Vacant
