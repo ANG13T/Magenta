@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magenta - Organized and Efficent Programming Language</title>
+    <meta name="description" content="A structured, simple, and organized programming language"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" href="styles/images/CircleLogo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="top">
+        <h1 class="title">Magenta</h1>
+        <h3 class="description">"a structured, simple, and organized programming language"</h3>
+    </div>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300">
+        <path fill="#FF00FF" fill-opacity="1" d="M0,96L30,117.3C60,139,120,181,180,176C240,171,300,117,360,90.7C420,64,480,64,540,64C600,64,660,64,720,90.7C780,117,840,171,900,186.7C960,203,1020,181,1080,192C1140,203,1200,245,1260,261.3C1320,277,1380,267,1410,261.3L1440,256L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path>
+    </svg>
+
+    <div class="main">
+        <div class="cards">
+            <div class="card">
+                <div class="logo-image">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                
+                <div class="card-body">
+                    <h2 class="card-text">Structured</h2>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="logo-image">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+        
+                <div class="card-body">
+                    <h2 class="card-text">Organized</h2>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="logo-image">
+                    <i class="fas fa-road"></i>
+                </div>
+                
+                <div class="card-body">
+                    <h2 class="card-text">Simple</h2>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="features">Example Script in Magenta</h3>
+        <pre class='prettyprint'>
+~~ Classic Bottles of Beer Song
+
+task beerSong: Vacant() ->  
+    String bottles;
+    Integer i = 99;
+    while [i >= 1] ->
+
+        if [i == 1] ->
+        bottles = "bottle";
+        <-
+        
+        if [i > 1] ->
+        bottles = "bottles";
+        <-
+
+        emit(i + " " + bottles + " of beer on the wall,");
+        emit(i + " " + bottles + " of beer,");
+        emit("Take one down, pass it around,");
+
+        i = i - 1;
+        emit(i + " bottles of beer on the wall!");
+    <-
+<-
+        </pre>
+
+        <h3 class="features">Features</h3>
+
+        <h4 class="sublist">Class Structure</h4>
+        <pre class='prettyprint'>   
+block Robot ->
+  Integer age = 3;
+  String name = "Bob";
+  task greeting: Vacant() -> 
+    emit "Hello, my name is " + age;
+  <-
+<-
+        </pre>
+        <h4 class="sublist">Function Structure</h4>
+        <pre class='prettyprint'>   
+task getSum: Integer(Integer one, Integer two) ->
+    Integer sum = one + two;
+    pass sum;
+<-
+        </pre>
+        <h4 class="sublist">Types</h4>
+        <pre class='prettyprint'>   
+~~ Boolean            
+Boolean bool = true;
+Boolean bool2 = false;
+
+~~ Integer
+Integer int = 2;
+Integer age = 14;
+
+~~ Decimal
+Decimal dec = 289.3;
+Decimal pi = 3.141592;
+
+~~ String
+String alphabet = "abcdef";
+String intro = "Hello World";
+
+~~ Vacant
+task sayHello: Vacant -> 
+  emit("hello");
+<-
+        </pre>
+        <h4 class="sublist">Statements</h4>
+        <pre class='prettyprint'> 
+~~ Emit: prints out a value
+
+emit("Hello World!");
+emit("Emit prints stuff out!");
+
+~~ Pass: returns value from function or method
+
+task getPi: Decimal() -> 
+    pass 3.14;
+<-
+        </pre>
+        <h4 class="sublist">Comments</h4>
+        <pre class='prettyprint'> 
+~~ One-line comments:
+
+~~ This is a comment
+~~ This is another comment
+~~ Third comment
+
+~~ Multi-line comments:
+~* 
+  This is a 
+  multi-line 
+  comment
+  block!
+*~
+        </pre>
+
+        <h3 class="features">Examples</h3>
+        <pre class='prettyprint'>
+~~ Function to Check if Number is Even or Odd
+
+task evenOrOdd: Vacant(Integer number) -> 
+    if(number % 2 == 0) ->
+        emit("Number is even");
+        pass;
+    <-
+    
+    emit("Number is odd");
+<-
+        </pre>
+
+        <pre class='prettyprint'>
+~~ Simple Car Block (Class)
+
+block Car ->
+    Decimal fuel = 17.89;
+    Integer miles = 88;
+    String brand = "Mercedes";
+
+    task introduce: Vacant() ->
+        emit("This is a " + brand + " car!");
+    <-
+
+    task getFuel: Decimal() ->
+        pass fuel;
+    <-
+<-
+        </pre>
+
+        <h3 class="features installation">** Installation ** </h3>
+        <div class="wrapper">
+            <a href="install.html" class="btn install-button">Install Magenta</a>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Copyright © 2020 Angelina Tsuboi </h3>
+        <div class="logos">
+            <a href="https://github.com/angelina-tsuboi/Magenta" target="_blank">
+                <i class="fab fa-github logo"></i>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=angelina.t1832@gmail.com" target="_blank">
+                <i class="fas fa-envelope logo"></i>
+            </a>
+        </div>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

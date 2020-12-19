@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.top{
+    background-color: #FF00FF;
+    text-align: center;
+    color: white;
+}
+
+
+.title{
+    margin-top: 0;
+    padding-top: 4rem;
+    font-size: 4rem;
+    margin-bottom: 0;
+    padding: none;
+    font-weight: bold;
+}
+
+.sublist{
+    text-align: center;
+    font-weight: lighter;
+    color: darkorchid;
+    margin-bottom: 1.3rem;
+}
+
+.logo-image{
+    margin-top: 1rem;
+    font-size: 5.5rem !important;
+    color: rgb(202, 83, 202) !important;
+    text-align: center;
+}
+
+.description{
+    padding-top: 2rem;
+    margin:0;
+    font-size: 1.3rem;
+}
+
+.installation{
+    font-weight: bold;
+    color: #ce3cd8;
+}
+
+.install-button{
+    background-color: #ce3cd8;
+    color: white !important;
+    border: 5px solid #ce3cd8;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.install-button:hover{
+    cursor: pointer;
+}
+
+.wrapper{
+    text-align: center;
+}
+
+.subtitle{
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+footer{
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: white;
+    background-color:rgb(167, 29, 167);
+    border: 1rem solid rgb(168, 28, 168);
+}
+
+h3{
+    font-size: 1.3rem;
+}
+
+.content-description{
+    text-align: center;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 8rem;
+}
+
+.card{
+    width: 25rem;
+    height: 15rem;
+    border-bottom: 5px solid magenta;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    cursor: pointer;
+}
+
+.card-text{
+    text-align: center;
+    width: 100%;
+}
+
+.card:hover{
+    transform: scale(1.05);
+ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+/* Code block Styles */
+.features{
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+code,
+.code,
+pre {
+  font-family: 'Source Code Pro', monospace;
+  background: #413f3f;
+  color: #fafafa;
+  border: 1rem solid #ce3cd8;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: left;
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 4rem;
+}
+
+.o {
+    color: orange;
+  }
+
+.w {
+    color: white;
+}
+
+.logo{
+    font-size: 2rem;
+    color: white;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: color 1s;
+}
+
+.logo:hover{
+    cursor: pointer;
+    color: rgb(242, 121, 242);
+}
+
+.subtitle{
+    text-align: center;
+    margin-bottom: 2rem;
+}
