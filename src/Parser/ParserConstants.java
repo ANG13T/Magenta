@@ -63,35 +63,39 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int PUNCRIGHTPAREN = 32;
   /** RegularExpression Id. */
-  int PUNCLEFTCURLY = 33;
+  int PUNCLEFTBLOCK = 33;
   /** RegularExpression Id. */
-  int PUNCRIGHTCURLY = 34;
+  int PUNCRIGHTBLOCK = 34;
   /** RegularExpression Id. */
-  int PUNCOPENARROW = 35;
+  int PUNCLEFTCURLY = 35;
   /** RegularExpression Id. */
-  int PUNCCLOSEARROW = 36;
+  int PUNCRIGHTCURLY = 36;
   /** RegularExpression Id. */
-  int KEYIF = 37;
+  int PUNCOPENARROW = 37;
   /** RegularExpression Id. */
-  int KEYFOR = 38;
+  int PUNCCLOSEARROW = 38;
   /** RegularExpression Id. */
-  int KEYWHILE = 39;
+  int KEYIF = 39;
   /** RegularExpression Id. */
-  int KEYBLOCK = 40;
+  int KEYFOR = 40;
   /** RegularExpression Id. */
-  int KEYEMIT = 41;
+  int KEYWHILE = 41;
   /** RegularExpression Id. */
-  int KEYTASK = 42;
+  int KEYBLOCK = 42;
   /** RegularExpression Id. */
-  int KEYNULL = 43;
+  int KEYEMIT = 43;
   /** RegularExpression Id. */
-  int KEYPASS = 44;
+  int KEYTASK = 44;
   /** RegularExpression Id. */
-  int IDENTCAPITALIZED = 45;
+  int KEYNULL = 45;
   /** RegularExpression Id. */
-  int IDENTLOWERCASE = 46;
+  int KEYPASS = 46;
   /** RegularExpression Id. */
-  int IDENTUNDERSCORE = 47;
+  int IDENTCAPITALIZED = 47;
+  /** RegularExpression Id. */
+  int IDENTLOWERCASE = 48;
+  /** RegularExpression Id. */
+  int IDENTUNDERSCORE = 49;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -131,6 +135,8 @@ public interface ParserConstants {
     "\"(PUNCEQUALSIGN)\"",
     "\"(PUNCLEFTPAREN)\"",
     "\"(PUNCRIGHTPAREN)\"",
+    "\"(PUNCLEFTBLOCK)\"",
+    "\"(PUNCRIGHTBLOCK)\"",
     "\"(PUNCLEFTCURLY)\"",
     "\"(PUNCRIGHTCURLY)\"",
     "\"(PUNCOPENARROW)\"",

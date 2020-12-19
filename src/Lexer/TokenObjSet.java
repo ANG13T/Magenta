@@ -39,6 +39,8 @@ public enum TokenObjSet {
   PUNCLEFTPAREN("[(]", false),
   PUNCRIGHTPAREN("[)]", false),
   PUNCLEFTCURLY("[{]", false),
+  PUNCLEFTBLOCK("[\\[]", false),
+  PUNCRIGHTBLOCK("[\\]]", false),
   PUNCRIGHTCURLY("[}]", false),
   PUNCOPENARROW("\\->", false),
   PUNCCLOSEARROW("\\<-", false),
