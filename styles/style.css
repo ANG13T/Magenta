@@ -21,6 +21,13 @@ body{
     font-weight: bold;
 }
 
+.sublist{
+    text-align: center;
+    font-weight: lighter;
+    color: darkorchid;
+    margin-bottom: 1.3rem;
+}
+
 .logo-image{
     margin-top: 1rem;
     font-size: 5.5rem !important;
@@ -34,6 +41,28 @@ body{
     font-size: 1.3rem;
 }
 
+.installation{
+    font-weight: bold;
+    color: #ce3cd8;
+}
+
+.install-button{
+    background-color: #ce3cd8;
+    color: white !important;
+    border: 5px solid #ce3cd8;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.install-button:hover{
+    cursor: pointer;
+}
+
+.wrapper{
+    text-align: center;
+}
+
 .subtitle{
     font-weight: bold;
     font-size: 2rem;
@@ -43,6 +72,8 @@ body{
 
 footer{
     bottom: 0;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     color: white;
     background-color:rgb(167, 29, 167);
@@ -112,4 +143,17 @@ pre {
 
 .w {
     color: white;
+}
+
+.logo{
+    font-size: 2rem;
+    color: white;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: color 1s;
+}
+
+.logo:hover{
+    cursor: pointer;
+    color: rgb(242, 121, 242);
 }

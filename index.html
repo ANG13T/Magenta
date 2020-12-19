@@ -53,62 +53,156 @@
             </div>
         </div>
 
+        <h3 class="features">Example Script in Magenta</h3>
+        <pre class='prettyprint'>
+~~ Classic Bottles of Beer Song
+
+task beerSong: Vacant() ->  
+    String bottles;
+    Integer i = 99;
+    while [i >= 1] ->
+
+        if [i == 1] ->
+        bottles = "bottle";
+        <-
+        
+        if [i > 1] ->
+        bottles = "bottles";
+        <-
+
+        emit(i + " " + bottles + " of beer on the wall,");
+        emit(i + " " + bottles + " of beer,");
+        emit("Take one down, pass it around,");
+
+        i = i - 1;
+        emit(i + " bottles of beer on the wall!");
+    <-
+<-
+        </pre>
+
         <h3 class="features">Features</h3>
+
+        <h4 class="sublist">Class Structure</h4>
+        <pre class='prettyprint'>   
+block Robot ->
+  Integer age = 3;
+  String name = "Bob";
+  task greeting: Vacant() -> 
+    emit "Hello, my name is " + age;
+  <-
+<-
+        </pre>
+        <h4 class="sublist">Function Structure</h4>
+        <pre class='prettyprint'>   
+task getSum: Integer(Integer one, Integer two) ->
+    Integer sum = one + two;
+    pass sum;
+<-
+        </pre>
+        <h4 class="sublist">Types</h4>
+        <pre class='prettyprint'>   
+~~ Boolean            
+Boolean bool = true;
+Boolean bool2 = false;
+
+~~ Integer
+Integer int = 2;
+Integer age = 14;
+
+~~ Decimal
+Decimal dec = 289.3;
+Decimal pi = 3.141592;
+
+~~ String
+String alphabet = "abcdef";
+String intro = "Hello World";
+
+~~ Vacant
+task sayHello: Vacant -> 
+  emit("hello");
+<-
+        </pre>
+        <h4 class="sublist">Statements</h4>
+        <pre class='prettyprint'> 
+~~ Emit: prints out a value
+
+emit("Hello World!");
+emit("Emit prints stuff out!");
+
+~~ Pass: returns value from function or method
+
+task getPi: Decimal() -> 
+    pass 3.14;
+<-
+        </pre>
+        <h4 class="sublist">Comments</h4>
+        <pre class='prettyprint'> 
+~~ One-line comments:
+
+~~ This is a comment
+~~ This is another comment
+~~ Third comment
+
+~~ Multi-line comments:
+~* 
+  This is a 
+  multi-line 
+  comment
+  block!
+*~
+        </pre>
+
+        <h3 class="features">Examples</h3>
         <pre class='prettyprint'>
-~~ Classic Beer Song
-task beerSong() ->  
-    String bottles;
-    Integer i = 99;
-    while [i >= 1] ->
+~~ Function to Check if Number is Even or Odd
 
-        if [i == 1] ->
-        bottles = "bottle";
-        <-
-        
-        if [i > 1] ->
-        bottles = "bottles";
-        <-
-
-        emit(i + " " + bottles + " of beer on the wall,");
-        emit(i + " " + bottles + " of beer,");
-        emit("Take one down, pass it around,");
-
-        i = i - 1;
-        emit(bottles + " bottles of beer on the wall!");
+task evenOrOdd: Vacant(Integer number) -> 
+    if(number % 2 == 0) ->
+        emit("Number is even");
+        pass;
     <-
+    
+    emit("Number is odd");
 <-
         </pre>
 
         <pre class='prettyprint'>
-task beerSong() ->  
-    String bottles;
-    Integer i = 99;
-    while [i >= 1] ->
+~~ Simple Car Block (Class)
 
-        if [i == 1] ->
-        bottles = "bottle";
-        <-
-        
-        if [i > 1] ->
-        bottles = "bottles";
-        <-
+block Car ->
+    Decimal fuel = 17.89;
+    Integer miles = 88;
+    String brand = "Mercedes";
 
-        emit(i + " " + bottles + " of beer on the wall,");
-        emit(i + " " + bottles + " of beer,");
-        emit("Take one down, pass it around,");
+    task introduce: Vacant() ->
+        emit("This is a " + brand + " car!");
+    <-
 
-        i = i - 1;
-        emit(bottles + " bottles of beer on the wall!");
+    task getFuel: Decimal() ->
+        pass fuel;
     <-
 <-
         </pre>
+
+        <h3 class="features installation">** Installation ** </h3>
+        <div class="wrapper">
+            <a href="install.html" class="btn install-button">Install Magenta</a>
+        </div>
     </div>
 
     <footer>
         <h3>Copyright © 2020 Angelina Tsuboi </h3>
+        <div class="logos">
+            <a href="">
+                <i class="fab fa-github logo"></i>
+            </a>
+            <a href="">
+                <i class="fas fa-envelope logo"></i>
+            </a>
+        </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
