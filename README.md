@@ -104,7 +104,7 @@ task getPi: Decimal() ->
 ### Comments
 - **One-line comments**:
 ```
-~~ This is a comment~
+~~ This is a comment
 ```
 - **Multi-line comments**:
 ```
@@ -118,5 +118,30 @@ task getPi: Decimal() ->
 
 ## Examples
 
-
-
+### Function to Check if Number is Even or Odd
+```
+task evenOrOdd: Vacant(Integer number) -> 
+    if(number % 2 == 0) ->
+     emit("Number is even");
+     pass;
+    <-
+    
+    emit("Number is odd");
+<-
+```
+### Simple Car Block (Class)
+```
+block Car ->
+    Decimal fuel = 17.89;
+    Integer miles = 88;
+    String brand = "Mercedes";
+    
+    task introduce: Vacant() ->
+        emit("This is a " + brand + " car!");
+    <-
+    
+    task getFuel: Decimal() ->
+        pass fuel;
+    <-
+<-
+```
