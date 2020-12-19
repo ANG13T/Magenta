@@ -157,3 +157,8 @@ pre {
     cursor: pointer;
     color: rgb(242, 121, 242);
 }
+
+.subtitle{
+    text-align: center;
+    margin-bottom: 2rem;
+}
