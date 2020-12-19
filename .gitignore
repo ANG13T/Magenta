@@ -1,3 +1,2 @@
-./styles
-./index.html
-./install.html
+*.html
+styles/
