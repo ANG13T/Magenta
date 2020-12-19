@@ -28,6 +28,10 @@ task beerSong: Vacant() ->
 <-
 ```
 
+## Website
+
+[Magenta Official Website](https://www.easyelementfinder.com/Magenta/)
+
 ## Installation / Running Magenta
 
 ### Installing: 
