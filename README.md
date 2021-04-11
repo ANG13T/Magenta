@@ -30,7 +30,7 @@ task beerSong: Vacant() ->
 
 ## Website
 
-[Magenta Official Website](https://www.easyelementfinder.com/Magenta/)
+[Magenta Official Website](https://angelina-tsuboi.github.io/Magenta/)
 
 ## Installation / Running Magenta
 
